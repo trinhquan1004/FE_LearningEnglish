@@ -19,7 +19,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   plugins: ['react', 'prettier'],
@@ -36,13 +36,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        map: [
-          ['@src', './src'],
-          ['@apis', './src/apis'],
-          ['@components', './src/components'],
-          ['@containers', './src/containers'],
-          ['@redux', './src/redux'],
-        ],
+        map: [['@src', './src']],
         extensions: ['.js', '.jsx', '.json'],
       },
     },
