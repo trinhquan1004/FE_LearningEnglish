@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { useSnackbar } from 'notistack';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Copyright from '../../components/Copyright';
+import { login } from '../../apis/auth';
 import {
   StyledBackgroundGrid,
   StyledBox,
@@ -19,22 +22,24 @@ import {
 } from './index.style';
 
 const HomeContainer = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const BACKGROUND_IMAGE_URL = 'https://source.unsplash.com/random?wallpapers';
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await login(email, password);
+
+    if (!response) {
+      enqueueSnackbar('Login failed', { variant: 'error' });
+    }
+  };
 
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
       <CssBaseline />
-      <StyledBackgroundGrid
-        item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
-      />
+      <StyledBackgroundGrid item xs={false} sm={4} md={7} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <StyledBox sx={{ my: 8, mx: 4 }}>
           <StyledTypography component="h1" variant="h5">
@@ -64,6 +69,8 @@ const HomeContainer = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -74,6 +81,8 @@ const HomeContainer = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
