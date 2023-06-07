@@ -4,8 +4,8 @@ import { Grid, Box, Typography } from '@mui/material';
 export const StyledBackgroundGrid = styled(Grid)`
   background-image: url(https://source.unsplash.com/random?wallpapers);
   background-repeat: no-repeat;
-  backgroundColor: (t) =>
-    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+  background-color: (t) =>
+    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900];
   background-size: cover;
   background-position: center;
 `;
