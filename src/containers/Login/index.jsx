@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,6 +15,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Copyright from '../../components/Copyright';
+import getErrorMessage from '../../errors/message';
 import { login } from '../../apis/auth';
 import {
   StyledBackgroundGrid,
@@ -21,9 +23,10 @@ import {
   StyledTypography,
 } from './index.style';
 
-const HomeContainer = () => {
+const LoginContainer = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -33,8 +36,21 @@ const HomeContainer = () => {
 
     if (!response) {
       enqueueSnackbar('Login failed', { variant: 'error' });
+      return;
     }
+
+    const errorMessage = getErrorMessage(response?.code);
+    if (errorMessage) {
+      enqueueSnackbar(errorMessage, { variant: 'error' });
+      return;
+    }
+
+    setIsRegistered(true);
   };
+
+  if (isRegistered) {
+    return <Navigate to="/lesson" />;
+  }
 
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
@@ -116,4 +132,4 @@ const HomeContainer = () => {
   );
 };
 
-export default HomeContainer;
+export default LoginContainer;
