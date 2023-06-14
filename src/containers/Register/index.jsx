@@ -1,21 +1,26 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { Navigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import {
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+} from '@mui/material';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import Typography from '@mui/material/Typography';
-import Copyright from '../../components/Copyright';
+import Copyright from '../../components/Copyright/index';
+import getErrorMessage from '../../errors/message';
 import { register } from '../../apis/auth';
-import { StyledContainer, StyledBox } from './index.style';
+import {
+  StyledContainer,
+  StyledBox,
+  StyledAvatar,
+  StyledButton,
+} from './index.style';
 
 const RegisterContainer = () => {
   const [name, setName] = useState('');
@@ -31,20 +36,26 @@ const RegisterContainer = () => {
 
     if (!response) {
       enqueueSnackbar('Register failed', { variant: 'error' });
-    } else setIsRegistered(true);
+      return;
+    }
+    const errorMessage = getErrorMessage(response?.code);
+    if (errorMessage) {
+      enqueueSnackbar(errorMessage, { variant: 'error' });
+      return;
+    }
+
+    setIsRegistered(true);
   };
 
-  if (isRegistered) {
-    return <Navigate to="/" />;
-  }
+  if (isRegistered) window.location.href = '/login';
 
   return (
-    <StyledContainer component="main" maxWidth="xs">
+    <StyledContainer component="main" className="customCon">
       <CssBaseline />
       <StyledBox>
-        <Avatar sx={{ m: 3, bgcolor: 'green' }}>
-          <PersonAddOutlinedIcon sx={{ fontSize: 30 }} />
-        </Avatar>
+        <StyledAvatar className="customAva">
+          <PersonAddOutlinedIcon />
+        </StyledAvatar>
         <Typography component="h1" variant="h5" sx={{ fontSize: 30 }}>
           Sign up
         </Typography>
@@ -95,24 +106,19 @@ const RegisterContainer = () => {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <StyledButton type="submit" className="customButton">
             Sign Up
-          </Button>
+          </StyledButton>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </Box>
       </StyledBox>
-      <Copyright sx={{ mt: 5 }} />
+      <Copyright />
     </StyledContainer>
   );
 };

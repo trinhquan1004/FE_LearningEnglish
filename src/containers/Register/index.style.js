@@ -1,17 +1,19 @@
 import styled from 'styled-components';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Avatar, Button } from '@mui/material';
 
 export const StyledContainer = styled(Container)`
-  padding: 30px !important;
-  width: 400px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  &&.customCon {
+    padding: 35px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const StyledBox = styled(Box)`
@@ -19,4 +21,21 @@ export const StyledBox = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const StyledAvatar = styled(Avatar)`
+  &&.customAva {
+    background-color: green;
+    margin: 6px;
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  &&.customButton {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    width: 100%;
+    background-color: ${(props) => props.theme.palette.primary.main};
+    color: ${(props) => props.theme.palette.primary.contrastText};
+  }
 `;

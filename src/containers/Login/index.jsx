@@ -1,32 +1,35 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import {
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Paper,
+  Box,
+  Grid,
+  Typography,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Copyright from '../../components/Copyright';
 import getErrorMessage from '../../errors/message';
 import { login } from '../../apis/auth';
+import { setToken } from '../../utils/localStorage';
 import {
+  StyledGrid,
   StyledBackgroundGrid,
   StyledBox,
   StyledTypography,
+  StyledAvatar,
+  StyledButton,
 } from './index.style';
 
 const LoginContainer = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isLogined, setIsLogined] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -45,28 +48,30 @@ const LoginContainer = () => {
       return;
     }
 
-    setIsRegistered(true);
+    setIsLogined(true);
+    if (response && response.result) {
+      const { accessToken } = response.result;
+      if (accessToken) setToken(accessToken);
+    }
   };
 
-  if (isRegistered) {
-    return <Navigate to="/lesson" />;
-  }
+  if (isLogined) window.location.href = '/lesson';
 
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <StyledGrid className="mainContainer">
       <CssBaseline />
       <StyledBackgroundGrid item xs={false} sm={4} md={7} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <StyledBox sx={{ my: 8, mx: 4 }}>
+        <StyledBox className="customBox">
           <StyledTypography component="h1" variant="h5">
             Welcome to our
             <br />
             English learning website!
           </StyledTypography>
           <br />
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <StyledAvatar>
             <LockOutlinedIcon />
-          </Avatar>
+          </StyledAvatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -104,14 +109,9 @@ const LoginContainer = () => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <StyledButton type="submit" className="customButton">
               Sign In
-            </Button>
+            </StyledButton>
             <Grid container>
               <Grid item xs>
                 <Link href="/" variant="body2">
@@ -124,11 +124,11 @@ const LoginContainer = () => {
                 </Link>
               </Grid>
             </Grid>
-            <Copyright sx={{ mt: 5 }} />
+            <Copyright />
           </Box>
         </StyledBox>
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 };
 

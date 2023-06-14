@@ -2,12 +2,13 @@ import api from './api';
 
 const login = async (email, password) => {
   try {
-    const loginInfo = await api({
+    const response = await api({
       method: 'POST',
       url: '/auths/login',
       data: { email, password },
     });
-    return loginInfo;
+
+    return response;
   } catch (error) {
     return null;
   }
@@ -15,12 +16,12 @@ const login = async (email, password) => {
 
 const register = async (name, email, password) => {
   try {
-    const registerInfor = await api({
+    const response = await api({
       method: 'POST',
       url: '/auths/register',
       data: { name, email, password },
     });
-    return registerInfor;
+    return response;
   } catch (error) {
     return null;
   }
