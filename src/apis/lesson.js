@@ -1,4 +1,5 @@
 import api from './api';
+import { getToken } from '../utils/localStorage';
 
 const getLessons = async () => {
   try {
@@ -12,4 +13,38 @@ const getLessons = async () => {
   }
 };
 
-export { getLessons };
+const createLesson = async (title, imageURL) => {
+  try {
+    const token = getToken();
+    const response = await api({
+      method: 'POST',
+      url: '/lesson',
+      data: { title, imageURL },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
+const updateLesson = async (lessonId, title, imageURL) => {
+  try {
+    const token = getToken();
+    const response = await api({
+      method: 'PUT',
+      url: `/lesson/${lessonId}`,
+      data: { title, imageURL },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
+export { getLessons, createLesson, updateLesson };

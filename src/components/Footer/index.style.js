@@ -5,6 +5,7 @@ export const StyledBox = styled(Box)`
   background-color: ${(props) => props.theme.palette.background.paper};
   padding: 48px;
 `;
+
 export const StyledTypography = styled.h3`
   text-align: center;
   margin-bottom: 8px;
