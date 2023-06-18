@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useSnackbar } from 'notistack';
 import { Grid, CssBaseline } from '@mui/material';
-import { getLessons, createLesson, updateLesson } from '../../apis/lesson';
+import {
+  getLessons,
+  createLesson,
+  updateLesson,
+  deleteLesson,
+} from '../../apis/lesson';
 import { removeToken } from '../../utils/localStorage';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
 import LessonItem from '../../components/LessonItem';
 import DialogLesson from '../../components/DialogLesson';
+import DialogDelete from '../../components/DialogDelete';
 import { StyledContainer } from './index.style';
 
 const LessonContainer = () => {
@@ -17,7 +24,10 @@ const LessonContainer = () => {
   const [editTitle, setEditTitle] = useState('');
   const [editImageURL, setEditImageURL] = useState('');
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const [selectedLesson, setSelectedLesson] = useState(null);
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchLessons = async () => {
     const { result } = await getLessons();
@@ -47,7 +57,10 @@ const LessonContainer = () => {
       handleCloseCreate();
       return;
     }
-    await createLesson(title, imageURL);
+    const response = await createLesson(title, imageURL);
+    if (response.status === 0) {
+      enqueueSnackbar(response.message, { variant: 'error' });
+    }
     setTitle('');
     setImageURL('');
     fetchLessons();
@@ -75,11 +88,41 @@ const LessonContainer = () => {
       handleCloseEdit();
       return;
     }
-    await updateLesson(selectedLesson.id, editTitle, editImageURL);
+    const response = await updateLesson(
+      selectedLesson.id,
+      editTitle,
+      editImageURL,
+    );
+    if (response.status === 0) {
+      enqueueSnackbar(response.message, { variant: 'error' });
+    }
     setEditTitle('');
     setEditImageURL('');
     fetchLessons();
     handleCloseEdit();
+  };
+
+  const handleOpenDelete = (lesson) => {
+    setSelectedLesson(lesson);
+    setOpenDelete(true);
+  };
+
+  const handleCloseDelete = () => {
+    setSelectedLesson(null);
+    setOpenDelete(false);
+  };
+
+  const handleDeleteLesson = (lesson) => {
+    handleOpenDelete(lesson);
+  };
+
+  const handleDelete = async () => {
+    const response = await deleteLesson(selectedLesson.id);
+    if (response.status === 0) {
+      enqueueSnackbar(response.message, { variant: 'error' });
+    }
+    fetchLessons();
+    handleCloseDelete();
   };
 
   useEffect(() => {
@@ -98,7 +141,8 @@ const LessonContainer = () => {
               <LessonItem
                 key={lesson.id}
                 lesson={lesson}
-                handleEditLesson={handleEditLesson}
+                onEditLesson={handleEditLesson}
+                onDeleteLesson={handleDeleteLesson}
               />
             ))}
           </Grid>
@@ -112,9 +156,9 @@ const LessonContainer = () => {
           onClose={handleCloseCreate}
           title={title}
           imageURL={imageURL}
-          handleTitleChange={(e) => setTitle(e.target.value)}
-          handleImageURLChange={(e) => setImageURL(e.target.value)}
-          handleSubmit={handleCreate}
+          onTitleChange={(e) => setTitle(e.target.value)}
+          onImageURLChange={(e) => setImageURL(e.target.value)}
+          onSubmit={handleCreate}
           nameButton="Add"
         />
         <DialogLesson
@@ -123,10 +167,17 @@ const LessonContainer = () => {
           onClose={handleCloseEdit}
           title={editTitle}
           imageURL={editImageURL}
-          handleTitleChange={(e) => setEditTitle(e.target.value)}
-          handleImageURLChange={(e) => setEditImageURL(e.target.value)}
-          handleSubmit={handleEdit}
+          onTitleChange={(e) => setEditTitle(e.target.value)}
+          onImageURLChange={(e) => setEditImageURL(e.target.value)}
+          onSubmit={handleEdit}
           nameButton="Edit"
+        />
+        <DialogDelete
+          titleDialog="Delete Lesson"
+          open={openDelete}
+          onClose={handleCloseDelete}
+          selectedItem={selectedLesson}
+          onDelete={handleDelete}
         />
       </>
     </>

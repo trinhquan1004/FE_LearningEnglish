@@ -7,7 +7,7 @@ import {
   StyledCardMedia,
 } from './index.style';
 
-const LessonItem = ({ lesson, handleEditLesson }) => (
+const LessonItem = ({ lesson, onEditLesson, onDeleteLesson }) => (
   <Grid item xs={12} sm={6} md={4}>
     <StyledCard>
       <StyledCardMedia image={lesson.imageUrl} />
@@ -21,11 +21,12 @@ const LessonItem = ({ lesson, handleEditLesson }) => (
       </CardContent>
       <StyledCardActions>
         <Button size="small">View</Button>
-        <Button size="small" onClick={() => handleEditLesson(lesson)}>
+        <Button size="small" onClick={() => onEditLesson(lesson)}>
           Edit
         </Button>
-        <Button size="small">Delete</Button>
-        <Button size="small">Add Card</Button>
+        <Button size="small" onClick={() => onDeleteLesson(lesson)}>
+          Delete
+        </Button>
       </StyledCardActions>
     </StyledCard>
   </Grid>

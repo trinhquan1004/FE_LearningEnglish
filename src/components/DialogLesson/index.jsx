@@ -13,23 +13,23 @@ const CustomDialog = ({
   onClose,
   title,
   imageURL,
-  handleTitleChange,
-  handleImageURLChange,
-  handleSubmit,
+  onTitleChange,
+  onImageURLChange,
+  onSubmit,
   nameButton,
 }) => (
   <StyledDialog open={open} onClose={onClose}>
     <DialogTitle>{titleDialog}</DialogTitle>
     <br />
     <DialogContent>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12}>
             <StyledTextField
               type="text"
               placeholder="Title"
               value={title}
-              onChange={handleTitleChange}
+              onChange={onTitleChange}
               className="customTextField"
             />
           </Grid>
@@ -38,7 +38,7 @@ const CustomDialog = ({
               type="text"
               placeholder="Image URL"
               value={imageURL}
-              onChange={handleImageURLChange}
+              onChange={onImageURLChange}
               className="customTextField"
             />
           </Grid>

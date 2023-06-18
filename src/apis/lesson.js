@@ -20,9 +20,7 @@ const createLesson = async (title, imageURL) => {
       method: 'POST',
       url: '/lesson',
       data: { title, imageURL },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     return response;
   } catch (error) {
@@ -37,9 +35,7 @@ const updateLesson = async (lessonId, title, imageURL) => {
       method: 'PUT',
       url: `/lesson/${lessonId}`,
       data: { title, imageURL },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     return response;
   } catch (error) {
@@ -47,4 +43,18 @@ const updateLesson = async (lessonId, title, imageURL) => {
   }
 };
 
-export { getLessons, createLesson, updateLesson };
+const deleteLesson = async (lessonId) => {
+  try {
+    const token = getToken();
+    const response = await api({
+      method: 'DELETE',
+      url: `/lesson/${lessonId}`,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
+export { getLessons, createLesson, updateLesson, deleteLesson };

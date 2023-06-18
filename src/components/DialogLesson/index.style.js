@@ -4,7 +4,7 @@ import { Dialog, DialogActions, Button, TextField } from '@mui/material';
 export const StyledDialog = styled(Dialog)`
     & .MuiDialog-paper {
     width: 40%;
-    height: 65%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
