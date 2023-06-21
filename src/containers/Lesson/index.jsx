@@ -11,7 +11,7 @@ import { removeToken } from '../../utils/localStorage';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
-import LessonItem from '../../components/LessonItem';
+import LessonItem from './LessonItem';
 import DialogLesson from '../../components/DialogLesson';
 import DialogDelete from '../../components/DialogDelete';
 import { StyledContainer } from './index.style';
@@ -35,21 +35,13 @@ const LessonContainer = () => {
     setLessons(lessonsArray);
   };
 
-  const handleLogout = () => {
-    removeToken();
-  };
+  const handleLogout = () => removeToken();
 
-  const handleOpenCreate = () => {
-    setOpenCreate(true);
-  };
+  const handleOpenCreate = () => setOpenCreate(true);
 
-  const handleCloseCreate = () => {
-    setOpenCreate(false);
-  };
+  const handleCloseCreate = () => setOpenCreate(false);
 
-  const handleAddLesson = () => {
-    handleOpenCreate();
-  };
+  const handleAddLesson = () => handleOpenCreate();
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -67,13 +59,9 @@ const LessonContainer = () => {
     handleCloseCreate();
   };
 
-  const handleOpenEdit = () => {
-    setOpenEdit(true);
-  };
+  const handleOpenEdit = () => setOpenEdit(true);
 
-  const handleCloseEdit = () => {
-    setOpenEdit(false);
-  };
+  const handleCloseEdit = () => setOpenEdit(false);
 
   const handleEditLesson = (lesson) => {
     setSelectedLesson(lesson);
@@ -112,10 +100,6 @@ const LessonContainer = () => {
     setOpenDelete(false);
   };
 
-  const handleDeleteLesson = (lesson) => {
-    handleOpenDelete(lesson);
-  };
-
   const handleDelete = async () => {
     const response = await deleteLesson(selectedLesson.id);
     if (response.status === 0) {
@@ -133,21 +117,19 @@ const LessonContainer = () => {
     <>
       <CssBaseline />
       <Header handleLogout={handleLogout} />
-      <main>
-        <Welcome handleAddLesson={handleAddLesson} />
-        <StyledContainer>
-          <Grid container spacing={4}>
-            {lessons.map((lesson) => (
-              <LessonItem
-                key={lesson.id}
-                lesson={lesson}
-                onEditLesson={handleEditLesson}
-                onDeleteLesson={handleDeleteLesson}
-              />
-            ))}
-          </Grid>
-        </StyledContainer>
-      </main>
+      <Welcome handleAddLesson={handleAddLesson} />
+      <StyledContainer>
+        <Grid container spacing={4}>
+          {lessons.map((lesson) => (
+            <LessonItem
+              key={lesson.id}
+              lesson={lesson}
+              onEditLesson={handleEditLesson}
+              onDeleteLesson={handleOpenDelete}
+            />
+          ))}
+        </Grid>
+      </StyledContainer>
       <Footer />
       <>
         <DialogLesson

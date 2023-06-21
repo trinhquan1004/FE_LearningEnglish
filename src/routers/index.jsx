@@ -8,6 +8,7 @@ import {
 import LoginPage from '../pages/Login';
 import RegisterPage from '../pages/Register';
 import LessonPage from '../pages/Lesson';
+import LessonDetailPage from '../pages/LessonDetail';
 import { getToken } from '../utils/localStorage';
 
 const AppRouter = () => {
@@ -25,6 +26,7 @@ const AppRouter = () => {
           path="/lesson"
           element={!token ? <Navigate to="/login" /> : <LessonPage />}
         />
+        <Route path="/lesson/:lessonId" element={<LessonDetailPage />} />
       </Routes>
     </Router>
   );
