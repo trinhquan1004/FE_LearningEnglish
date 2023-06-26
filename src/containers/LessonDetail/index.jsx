@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { CssBaseline, Button } from '@mui/material';
-import { getCards } from '../../apis/card';
+import { getCards, deleteCard } from '../../apis/card';
 import { removeToken } from '../../utils/localStorage';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardItem from './CardItem';
 import CardButtons from './CardButtons';
+import DialogDeleteCard from './DialogDeleteCard';
 import {
   StyledGrid,
   StyledBox,
@@ -17,6 +19,10 @@ import {
 const LessonDetail = ({ lessonId }) => {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const navigate = useNavigate();
 
@@ -39,6 +45,25 @@ const LessonDetail = ({ lessonId }) => {
 
   const handlePrevCard = () => setCurrentIndex((prevIndex) => prevIndex - 1);
 
+  const handleOpenDelete = (card) => {
+    setSelectedCard(card);
+    setOpenDelete(true);
+  };
+
+  const handleCloseDelete = () => {
+    setSelectedCard(null);
+    setOpenDelete(false);
+  };
+
+  const handleDelete = async () => {
+    const response = await deleteCard(selectedCard.id);
+    if (response.status === 0) {
+      enqueueSnackbar(response.message, { variant: 'error' });
+    }
+    fetchCards(lessonId);
+    handleCloseDelete();
+  };
+
   useEffect(() => {
     fetchCards(lessonId);
   }, []);
@@ -57,7 +82,11 @@ const LessonDetail = ({ lessonId }) => {
       </StyledBox>
       <StyledGrid>
         {cards[currentIndex] && (
-          <CardItem card={cards[currentIndex]} key={cards[currentIndex].id} />
+          <CardItem
+            card={cards[currentIndex]}
+            key={cards[currentIndex].id}
+            onDeleteCard={handleOpenDelete}
+          />
         )}
       </StyledGrid>
       <CardButtons
@@ -65,6 +94,13 @@ const LessonDetail = ({ lessonId }) => {
         onNextCard={handleNextCard}
         onReturn={handleReturn}
         currentIndex={currentIndex}
+      />
+      <DialogDeleteCard
+        titleDialog="Delete Card"
+        open={openDelete}
+        onClose={handleCloseDelete}
+        selectedCard={selectedCard}
+        onDelete={handleDelete}
       />
       <Footer />
     </>

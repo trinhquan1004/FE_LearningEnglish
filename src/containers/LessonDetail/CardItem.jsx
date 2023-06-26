@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyledCard,
   StyledCardActions,
-  StyledCardTypography,
+  StyledTitleTypography,
   StyledCardMedia,
   StyledCardButton,
+  StyledDescTypography,
 } from './index.style';
 
-const CardItem = ({ card }) => (
-  <StyledCard className="customCard">
-    <StyledCardTypography className="titleTypo">
-      {card.name}
-    </StyledCardTypography>
-    <StyledCardMedia image={card.imageUrl} />
-    <StyledCardActions>
-      <StyledCardButton className="customButton">Edit</StyledCardButton>
-      <StyledCardButton className="customButton">Delete</StyledCardButton>
-    </StyledCardActions>
-  </StyledCard>
-);
+const CardItem = ({ card, onDeleteCard }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleCardClick = () => setIsFlipped(!isFlipped);
+
+  return (
+    <StyledCard
+      className={`customCard ${isFlipped ? 'flipped' : ''}`}
+      onClick={handleCardClick}
+    >
+      {!isFlipped && (
+        <>
+          <StyledTitleTypography className="titleTypo">
+            {card.name}
+          </StyledTitleTypography>
+          <StyledCardMedia image={card.imageUrl} />
+          <StyledCardActions>
+            <StyledCardButton className="customButton">Edit</StyledCardButton>
+            <StyledCardButton
+              className="customButton"
+              onClick={() => onDeleteCard(card)}
+            >
+              Delete
+            </StyledCardButton>
+          </StyledCardActions>
+        </>
+      )}
+      {isFlipped && (
+        <StyledDescTypography className="descTypo">
+          {card.desc}
+        </StyledDescTypography>
+      )}
+    </StyledCard>
+  );
+};
 
 export default CardItem;

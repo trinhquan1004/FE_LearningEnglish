@@ -8,6 +8,8 @@ import {
   Card,
   CardActions,
   CardMedia,
+  Dialog,
+  DialogActions,
 } from '@mui/material';
 
 export const StyledGrid = styled(Grid)`
@@ -79,6 +81,12 @@ export const StyledCard = styled(Card)`
     border-radius: 10px;
     background-color: #98f5ff;
     box-shadow: 0px 0px 5px ${(props) => props.theme.palette.primary.main};
+    transition: transform 0.2s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    &.flipped {
+      transform: rotateY(180deg);
+    }
   }
 `;
 
@@ -88,7 +96,7 @@ export const StyledCardActions = styled(CardActions)`
   align-items: center;
 `;
 
-export const StyledCardTypography = styled(Typography)`
+export const StyledTitleTypography = styled(Typography)`
   &&.titleTypo {
     display: flex;
     font-weight: bold;
@@ -96,6 +104,19 @@ export const StyledCardTypography = styled(Typography)`
     margin-bottom: 20px;
     font-size: 4rem;
     color: ${(props) => props.theme.palette.secondary.main};
+  }
+`;
+
+export const StyledDescTypography = styled(Typography)`
+  &&.descTypo {
+    padding: 10px;
+    font-size: 3rem;
+    color: black;
+    transform: rotateY(180deg);
+    white-space: pre-wrap;
+    word-break: break-word;
+    width: 320px;
+    text-align: center;
   }
 `;
 
@@ -115,5 +136,51 @@ export const StyledCardButton = styled(Button)`
     background-color: #ffff;
     margin-right: 20px;
     margin-left: 20px;
+  }
+`;
+
+export const StyledDeleteTypography = styled(Typography)`
+  &&.customTypo {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+  }
+`;
+
+export const StyledDialog = styled(Dialog)`
+    & .MuiDialog-paper {
+    width: 35%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+  },
+`;
+
+export const StyledDialogActions = styled(DialogActions)`
+  &&.customDialogActions {
+    justify-content: center;
+    display: flex;
+    gap: 8px;
+    margin-top: 36px;
+  }
+`;
+
+export const StyledDeleteButton = styled(Button)`
+  &&.customButton {
+    min-width: 120px;
+    margin: 10px;
+  }
+  &&.deleteButton {
+    background-color: red;
+    color: white;
+  }
+  &&.deleteButton.disabled {
+    background-color: #ccc;
+    pointer-events: none;
   }
 `;
