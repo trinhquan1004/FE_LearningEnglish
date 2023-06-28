@@ -10,6 +10,7 @@ import {
   CardMedia,
   Dialog,
   DialogActions,
+  TextField,
 } from '@mui/material';
 
 export const StyledGrid = styled(Grid)`
@@ -149,7 +150,7 @@ export const StyledDeleteTypography = styled(Typography)`
   }
 `;
 
-export const StyledDialog = styled(Dialog)`
+export const StyledDeleteDialog = styled(Dialog)`
     & .MuiDialog-paper {
     width: 35%;
     height: 45%;
@@ -182,5 +183,34 @@ export const StyledDeleteButton = styled(Button)`
   &&.deleteButton.disabled {
     background-color: #ccc;
     pointer-events: none;
+  }
+`;
+
+export const StyledAddDialog = styled(Dialog)`
+    & .MuiDialog-paper {
+    width: 40%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+  },
+`;
+
+export const StyledAddButton = styled(Button)`
+  &&.customButton {
+    min-width: 120px;
+    margin: 20px;
+    margin-top: 40px;
+  }
+`;
+
+export const StyledTextField = styled(TextField)`
+  &&.customTextField {
+    width: 100%;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 4px;
   }
 `;

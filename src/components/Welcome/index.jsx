@@ -7,7 +7,7 @@ import {
   StyledStack,
 } from './index.style';
 
-const Welcome = ({ handleAddLesson }) => (
+const Welcome = ({ onAddLesson }) => (
   <StyledBox>
     <Container maxWidth="sm">
       <StyledTypography className="titleTypo">
@@ -17,7 +17,7 @@ const Welcome = ({ handleAddLesson }) => (
         Please select a lesson to study.
       </StyledTypography1>
       <StyledStack className="customStack">
-        <Button variant="contained" onClick={handleAddLesson}>
+        <Button variant="contained" onClick={onAddLesson}>
           Create Lesson
         </Button>
       </StyledStack>

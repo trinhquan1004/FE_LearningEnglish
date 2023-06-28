@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { DialogTitle, DialogContent, TextField } from '@mui/material';
 import {
-  StyledTypography,
-  StyledDialog,
+  StyledDeleteTypography,
+  StyledDeleteDialog,
   StyledDialogActions,
-  StyledButton,
+  StyledDeleteButton,
 } from './index.style';
 
-const DialogDelete = ({
-  titleDialog,
-  open,
-  onClose,
-  selectedItem,
-  onDelete,
-}) => {
+const DialogDelete = ({ open, onClose, selectedItem, onDelete }) => {
   const [confirmed, setConfirmed] = useState(false);
 
   const handleConfirmedChange = (e) => {
@@ -34,12 +28,13 @@ const DialogDelete = ({
   }, [open]);
 
   return (
-    <StyledDialog open={open} onClose={onClose}>
-      <DialogTitle>{titleDialog}</DialogTitle>
+    <StyledDeleteDialog open={open} onClose={onClose}>
+      <DialogTitle>Delete Lesson</DialogTitle>
       <DialogContent>
-        <StyledTypography className="customTypo">
-          To delete the &quot;{selectedItem?.title}&quot;, type the to confirm.
-        </StyledTypography>
+        <StyledDeleteTypography className="customTypo">
+          To delete the lesson &quot;{selectedItem?.title}&quot;, type the name
+          to confirm.
+        </StyledDeleteTypography>
         <TextField
           label="Lesson Name"
           onChange={handleConfirmedChange}
@@ -47,10 +42,10 @@ const DialogDelete = ({
         />
       </DialogContent>
       <StyledDialogActions>
-        <StyledButton onClick={handleClose} className="customButton">
+        <StyledDeleteButton onClick={handleClose} className="customButton">
           Cancel
-        </StyledButton>
-        <StyledButton
+        </StyledDeleteButton>
+        <StyledDeleteButton
           onClick={onDelete}
           variant="contained"
           className={`customButton deleteButton ${
@@ -59,9 +54,9 @@ const DialogDelete = ({
           disabled={!confirmed}
         >
           Delete
-        </StyledButton>
+        </StyledDeleteButton>
       </StyledDialogActions>
-    </StyledDialog>
+    </StyledDeleteDialog>
   );
 };
 

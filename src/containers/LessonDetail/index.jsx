@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardItem from './CardItem';
 import CardButtons from './CardButtons';
+import DialogAddCard from './DialogAddCard';
 import DialogDeleteCard from './DialogDeleteCard';
 import {
   StyledGrid,
@@ -21,6 +22,7 @@ const LessonDetail = ({ lessonId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [openCreate, setOpenCreate] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -45,6 +47,10 @@ const LessonDetail = ({ lessonId }) => {
 
   const handlePrevCard = () => setCurrentIndex((prevIndex) => prevIndex - 1);
 
+  const handleOpenCreate = () => setOpenCreate(true);
+
+  const handleCloseCreate = () => setOpenCreate(false);
+
   const handleOpenDelete = (card) => {
     setSelectedCard(card);
     setOpenDelete(true);
@@ -60,6 +66,7 @@ const LessonDetail = ({ lessonId }) => {
     if (response.status === 0) {
       enqueueSnackbar(response.message, { variant: 'error' });
     }
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     fetchCards(lessonId);
     handleCloseDelete();
   };
@@ -77,7 +84,9 @@ const LessonDetail = ({ lessonId }) => {
           Welcome to the cards!
         </StyledTypography>
         <StyledStack className="customStack">
-          <Button variant="contained">Create Card</Button>
+          <Button variant="contained" onClick={handleOpenCreate}>
+            Create Card
+          </Button>
         </StyledStack>
       </StyledBox>
       <StyledGrid>
@@ -95,8 +104,13 @@ const LessonDetail = ({ lessonId }) => {
         onReturn={handleReturn}
         currentIndex={currentIndex}
       />
+      <DialogAddCard
+        open={openCreate}
+        onClose={handleCloseCreate}
+        lessonId={lessonId}
+        fetchCards={fetchCards}
+      />
       <DialogDeleteCard
-        titleDialog="Delete Card"
         open={openDelete}
         onClose={handleCloseDelete}
         selectedCard={selectedCard}

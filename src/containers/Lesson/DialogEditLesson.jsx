@@ -7,22 +7,20 @@ import {
   StyledTextField,
 } from './index.style';
 
-const CustomDialog = ({
-  titleDialog,
+const DialogEditLesson = ({
   open,
   onClose,
   title,
   imageURL,
   onTitleChange,
   onImageURLChange,
-  onSubmit,
-  nameButton,
+  onSubmitEdit,
 }) => (
   <StyledDialog open={open} onClose={onClose}>
-    <DialogTitle>{titleDialog}</DialogTitle>
+    <DialogTitle>Edit Lesson</DialogTitle>
     <br />
     <DialogContent>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmitEdit}>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12}>
             <StyledTextField
@@ -53,7 +51,7 @@ const CustomDialog = ({
             variant="contained"
             className="customButton"
           >
-            {nameButton}
+            Edit
           </StyledButton>
         </StyledDialogActions>
       </form>
@@ -61,4 +59,4 @@ const CustomDialog = ({
   </StyledDialog>
 );
 
-export default CustomDialog;
+export default DialogEditLesson;

@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { DialogTitle, DialogContent, TextField } from '@mui/material';
 import {
   StyledDeleteTypography,
-  StyledDialog,
+  StyledDeleteDialog,
   StyledDialogActions,
   StyledDeleteButton,
 } from './index.style';
 
-const DialogDelete = ({
-  titleDialog,
-  open,
-  onClose,
-  selectedCard,
-  onDelete,
-}) => {
+const DialogDelete = ({ open, onClose, selectedCard, onDelete }) => {
   const [confirmed, setConfirmed] = useState(false);
 
   const handleConfirmedChange = (e) => {
@@ -34,8 +28,8 @@ const DialogDelete = ({
   }, [open]);
 
   return (
-    <StyledDialog open={open} onClose={onClose}>
-      <DialogTitle>{titleDialog}</DialogTitle>
+    <StyledDeleteDialog open={open} onClose={onClose}>
+      <DialogTitle>Delete Card</DialogTitle>
       <DialogContent>
         <StyledDeleteTypography className="customTypo">
           To delete the card &quot;{selectedCard?.name}&quot;, type the name to
@@ -62,7 +56,7 @@ const DialogDelete = ({
           Delete
         </StyledDeleteButton>
       </StyledDialogActions>
-    </StyledDialog>
+    </StyledDeleteDialog>
   );
 };
 

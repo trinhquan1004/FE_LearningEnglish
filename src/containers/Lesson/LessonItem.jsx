@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   StyledCard,
   StyledCardActions,
-  StyledTypography,
+  StyledItemTypography,
   StyledCardMedia,
 } from './index.style';
 
@@ -17,9 +17,9 @@ const LessonItem = ({ lesson, onEditLesson, onDeleteLesson }) => {
       <StyledCard>
         <StyledCardMedia image={lesson.imageUrl} />
         <CardContent sx={{ flexGrow: 1 }}>
-          <StyledTypography className="titleTypo">
+          <StyledItemTypography className="titleTypo">
             {lesson.title}
-          </StyledTypography>
+          </StyledItemTypography>
           <Typography>
             This is a beginner&apos;s English lesson about {lesson.title}.
           </Typography>

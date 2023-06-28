@@ -13,6 +13,21 @@ const getCards = async (lessonId) => {
   }
 };
 
+const createCard = async ({ name, imageURL, desc, lessonId }) => {
+  try {
+    const token = getToken();
+    const response = await api({
+      method: 'POST',
+      url: '/cards',
+      data: { name, imageURL, desc, lessonId },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
 const deleteCard = async (cardId) => {
   try {
     const token = getToken();
@@ -27,4 +42,4 @@ const deleteCard = async (cardId) => {
   }
 };
 
-export { getCards, deleteCard };
+export { getCards, createCard, deleteCard };

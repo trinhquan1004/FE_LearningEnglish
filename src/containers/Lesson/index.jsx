@@ -12,8 +12,9 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
 import LessonItem from './LessonItem';
-import DialogLesson from '../../components/DialogLesson';
-import DialogDelete from '../../components/DialogDelete';
+import DialogAddLesson from './DialogAddLesson';
+import DialogEditLesson from './DialogEditLesson';
+import DialogDeleteLesson from './DialogDeleteLesson';
 import { StyledContainer } from './index.style';
 
 const LessonContainer = () => {
@@ -117,7 +118,7 @@ const LessonContainer = () => {
     <>
       <CssBaseline />
       <Header handleLogout={handleLogout} />
-      <Welcome handleAddLesson={handleAddLesson} />
+      <Welcome onAddLesson={handleAddLesson} />
       <StyledContainer>
         <Grid container spacing={4}>
           {lessons.map((lesson) => (
@@ -132,30 +133,25 @@ const LessonContainer = () => {
       </StyledContainer>
       <Footer />
       <>
-        <DialogLesson
-          titleDialog="Create Lesson"
+        <DialogAddLesson
           open={openCreate}
           onClose={handleCloseCreate}
           title={title}
           imageURL={imageURL}
           onTitleChange={(e) => setTitle(e.target.value)}
           onImageURLChange={(e) => setImageURL(e.target.value)}
-          onSubmit={handleCreate}
-          nameButton="Add"
+          onSubmitCreate={handleCreate}
         />
-        <DialogLesson
-          titleDialog="Edit Lesson"
+        <DialogEditLesson
           open={openEdit}
           onClose={handleCloseEdit}
           title={editTitle}
           imageURL={editImageURL}
           onTitleChange={(e) => setEditTitle(e.target.value)}
           onImageURLChange={(e) => setEditImageURL(e.target.value)}
-          onSubmit={handleEdit}
-          nameButton="Edit"
+          onSubmitEdit={handleEdit}
         />
-        <DialogDelete
-          titleDialog="Delete Lesson"
+        <DialogDeleteLesson
           open={openDelete}
           onClose={handleCloseDelete}
           selectedItem={selectedLesson}
