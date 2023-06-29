@@ -12,9 +12,9 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
 import LessonItem from './LessonItem';
-import DialogAddLesson from './DialogAddLesson';
-import DialogEditLesson from './DialogEditLesson';
-import DialogDeleteLesson from './DialogDeleteLesson';
+import AddLessonDialog from './AddLessonDialog';
+import EditLessonDialog from './EditLessonDialog';
+import DeleteLessonDialog from './DeleteLessonDialog';
 import { StyledContainer } from './index.style';
 
 const LessonContainer = () => {
@@ -133,16 +133,16 @@ const LessonContainer = () => {
       </StyledContainer>
       <Footer />
       <>
-        <DialogAddLesson
+        <AddLessonDialog
           open={openCreate}
           onClose={handleCloseCreate}
           title={title}
           imageURL={imageURL}
           onTitleChange={(e) => setTitle(e.target.value)}
           onImageURLChange={(e) => setImageURL(e.target.value)}
-          onSubmitCreate={handleCreate}
+          onSubmitAdd={handleCreate}
         />
-        <DialogEditLesson
+        <EditLessonDialog
           open={openEdit}
           onClose={handleCloseEdit}
           title={editTitle}
@@ -151,7 +151,7 @@ const LessonContainer = () => {
           onImageURLChange={(e) => setEditImageURL(e.target.value)}
           onSubmitEdit={handleEdit}
         />
-        <DialogDeleteLesson
+        <DeleteLessonDialog
           open={openDelete}
           onClose={handleCloseDelete}
           selectedItem={selectedLesson}

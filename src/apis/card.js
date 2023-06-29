@@ -28,6 +28,21 @@ const createCard = async ({ name, imageURL, desc, lessonId }) => {
   }
 };
 
+const updateCard = async ({ name, imageURL, desc, cardId }) => {
+  try {
+    const token = getToken();
+    const response = await api({
+      method: 'PUT',
+      url: `/cards/${cardId}`,
+      data: { name, imageURL, desc },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
 const deleteCard = async (cardId) => {
   try {
     const token = getToken();
@@ -42,4 +57,4 @@ const deleteCard = async (cardId) => {
   }
 };
 
-export { getCards, createCard, deleteCard };
+export { getCards, createCard, updateCard, deleteCard };

@@ -8,7 +8,7 @@ import {
   StyledDescTypography,
 } from './index.style';
 
-const CardItem = ({ card, onDeleteCard }) => {
+const CardItem = ({ card, onEditCard, onDeleteCard }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardClick = () => setIsFlipped(!isFlipped);
@@ -25,7 +25,12 @@ const CardItem = ({ card, onDeleteCard }) => {
           </StyledTitleTypography>
           <StyledCardMedia image={card.imageUrl} />
           <StyledCardActions>
-            <StyledCardButton className="customButton">Edit</StyledCardButton>
+            <StyledCardButton
+              className="customButton"
+              onClick={() => onEditCard(card)}
+            >
+              Edit
+            </StyledCardButton>
             <StyledCardButton
               className="customButton"
               onClick={() => onDeleteCard(card)}

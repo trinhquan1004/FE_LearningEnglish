@@ -214,3 +214,23 @@ export const StyledTextField = styled(TextField)`
     border-radius: 4px;
   }
 `;
+
+export const StyledEditDialog = styled(Dialog)`
+    & .MuiDialog-paper {
+    width: 40%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+  },
+`;
+
+export const StyledEditButton = styled(Button)`
+  &&.customButton {
+    min-width: 120px;
+    margin: 20px;
+    margin-top: 40px;
+  }
+`;

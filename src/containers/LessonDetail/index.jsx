@@ -8,8 +8,9 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardItem from './CardItem';
 import CardButtons from './CardButtons';
-import DialogAddCard from './DialogAddCard';
-import DialogDeleteCard from './DialogDeleteCard';
+import AddCardDialog from './AddCardDialog';
+import EditCardDialog from './EditCardDialog';
+import DeleteCardDialog from './DeleteCardDialog';
 import {
   StyledGrid,
   StyledBox,
@@ -23,6 +24,7 @@ const LessonDetail = ({ lessonId }) => {
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [openCreate, setOpenCreate] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -50,6 +52,16 @@ const LessonDetail = ({ lessonId }) => {
   const handleOpenCreate = () => setOpenCreate(true);
 
   const handleCloseCreate = () => setOpenCreate(false);
+
+  const handleOpenEdit = (card) => {
+    setSelectedCard(card);
+    setOpenEdit(true);
+  };
+
+  const handleCloseEdit = () => {
+    setSelectedCard(null);
+    setOpenEdit(false);
+  };
 
   const handleOpenDelete = (card) => {
     setSelectedCard(card);
@@ -94,6 +106,7 @@ const LessonDetail = ({ lessonId }) => {
           <CardItem
             card={cards[currentIndex]}
             key={cards[currentIndex].id}
+            onEditCard={handleOpenEdit}
             onDeleteCard={handleOpenDelete}
           />
         )}
@@ -104,13 +117,21 @@ const LessonDetail = ({ lessonId }) => {
         onReturn={handleReturn}
         currentIndex={currentIndex}
       />
-      <DialogAddCard
+      <AddCardDialog
         open={openCreate}
         onClose={handleCloseCreate}
         lessonId={lessonId}
         fetchCards={fetchCards}
       />
-      <DialogDeleteCard
+      <EditCardDialog
+        open={openEdit}
+        onClose={handleCloseEdit}
+        selectedCard={selectedCard}
+        lessonId={lessonId}
+        fetchCards={fetchCards}
+      />
+
+      <DeleteCardDialog
         open={openDelete}
         onClose={handleCloseDelete}
         selectedCard={selectedCard}
