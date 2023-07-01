@@ -95,11 +95,7 @@ const DialogEditCard = ({
             <StyledEditButton onClick={onClose} className="customButton">
               Cancel
             </StyledEditButton>
-            <StyledEditButton
-              type="submit"
-              variant="contained"
-              className="customButton"
-            >
+            <StyledEditButton type="submit" className="containedButton">
               Edit
             </StyledEditButton>
           </StyledDialogActions>

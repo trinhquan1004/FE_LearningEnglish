@@ -11,6 +11,7 @@ import CardButtons from './CardButtons';
 import AddCardDialog from './AddCardDialog';
 import EditCardDialog from './EditCardDialog';
 import DeleteCardDialog from './DeleteCardDialog';
+import NotifyFinishDialog from './NotifyFinishDialog';
 import {
   StyledGrid,
   StyledBox,
@@ -25,6 +26,7 @@ const LessonDetail = ({ lessonId }) => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [openCreate, setOpenCreate] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openFinishLesson, setOpenFinishLesson] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -44,10 +46,18 @@ const LessonDetail = ({ lessonId }) => {
   const handleLogout = () => removeToken();
 
   const handleNextCard = () => {
+    if (currentIndex === cards.length - 1) {
+      setOpenFinishLesson(true);
+      return;
+    }
     setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
   };
 
   const handlePrevCard = () => setCurrentIndex((prevIndex) => prevIndex - 1);
+
+  const handleFinish = () => setOpenFinishLesson(true);
+
+  const handleCloseFinish = () => setOpenFinishLesson(false);
 
   const handleOpenCreate = () => setOpenCreate(true);
 
@@ -87,6 +97,10 @@ const LessonDetail = ({ lessonId }) => {
     fetchCards(lessonId);
   }, []);
 
+  useEffect(() => {
+    if (currentIndex === cards.length - 1) setOpenFinishLesson(true);
+  }, [currentIndex, cards]);
+
   return (
     <>
       <CssBaseline />
@@ -106,16 +120,18 @@ const LessonDetail = ({ lessonId }) => {
           <CardItem
             card={cards[currentIndex]}
             key={cards[currentIndex].id}
-            onEditCard={handleOpenEdit}
-            onDeleteCard={handleOpenDelete}
+            onPrevCard={handlePrevCard}
+            onNextCard={handleNextCard}
+            currentIndex={currentIndex}
           />
         )}
       </StyledGrid>
       <CardButtons
-        onPrevCard={handlePrevCard}
-        onNextCard={handleNextCard}
+        card={cards[currentIndex]}
+        onEditCard={handleOpenEdit}
+        onDeleteCard={handleOpenDelete}
         onReturn={handleReturn}
-        currentIndex={currentIndex}
+        onFinish={handleFinish}
       />
       <AddCardDialog
         open={openCreate}
@@ -136,6 +152,11 @@ const LessonDetail = ({ lessonId }) => {
         onClose={handleCloseDelete}
         selectedCard={selectedCard}
         onDelete={handleDelete}
+      />
+      <NotifyFinishDialog
+        open={openFinishLesson}
+        onClose={handleCloseFinish}
+        onReturn={handleReturn}
       />
       <Footer />
     </>

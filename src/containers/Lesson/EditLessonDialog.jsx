@@ -46,11 +46,7 @@ const DialogEditLesson = ({
           <StyledButton onClick={onClose} className="customButton">
             Cancel
           </StyledButton>
-          <StyledButton
-            type="submit"
-            variant="contained"
-            className="customButton"
-          >
+          <StyledButton type="submit" className="containedButton">
             Edit
           </StyledButton>
         </StyledDialogActions>

@@ -51,7 +51,8 @@ export const StyledButton = styled(Button)`
     color: ${(props) => props.theme.palette.primary.main};
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
-  &&.newButton {
+  &&.containedButton {
+    margin: 8px;
     background-color: ${(props) => props.theme.palette.primary.main};
     color: ${(props) => props.theme.palette.primary.contrastText};
   }
@@ -204,6 +205,13 @@ export const StyledAddButton = styled(Button)`
     margin: 20px;
     margin-top: 40px;
   }
+  &&.containedButton {
+    min-width: 120px;
+    margin: 20px;
+    margin-top: 40px;
+    color: ${(props) => props.theme.palette.primary.contrastText};
+    background-color: ${(props) => props.theme.palette.primary.main};
+  }
 `;
 
 export const StyledTextField = styled(TextField)`
@@ -232,5 +240,55 @@ export const StyledEditButton = styled(Button)`
     min-width: 120px;
     margin: 20px;
     margin-top: 40px;
+  }
+  &&.containedButton {
+    min-width: 120px;
+    margin: 20px;
+    margin-top: 40px;
+    color: ${(props) => props.theme.palette.primary.contrastText};
+    background-color: ${(props) => props.theme.palette.primary.main};
+  }
+`;
+
+export const StyledFinishTypography = styled(Typography)`
+  &&.customTypo {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #333;
+    margin: 25px;
+  }
+`;
+
+export const StyledFinishDialog = styled(Dialog)`
+    & .MuiDialog-paper {
+    width: 30%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+  },
+`;
+
+export const StyledFinishDialogActions = styled(DialogActions)`
+  &&.customDialogActions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+`;
+
+export const StyledFinishButton = styled(Button)`
+  &&.customButton {
+    min-width: 120px;
+    margin: 20px;
+  }
+  &&.containedButton {
+    min-width: 120px;
+    margin: 20px;
+    color: ${(props) => props.theme.palette.primary.contrastText};
+    background-color: ${(props) => props.theme.palette.primary.main};
   }
 `;

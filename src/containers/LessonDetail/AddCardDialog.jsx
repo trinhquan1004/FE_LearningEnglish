@@ -79,11 +79,7 @@ const DialogAddCard = ({ open, onClose, lessonId, fetchCards }) => {
             <StyledAddButton onClick={onClose} className="customButton">
               Cancel
             </StyledAddButton>
-            <StyledAddButton
-              type="submit"
-              variant="contained"
-              className="customButton"
-            >
+            <StyledAddButton type="submit" className="containedButton">
               Add
             </StyledAddButton>
           </StyledDialogActions>

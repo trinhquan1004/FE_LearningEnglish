@@ -46,11 +46,7 @@ const DialogAddLesson = ({
           <StyledButton onClick={onClose} className="customButton">
             Cancel
           </StyledButton>
-          <StyledButton
-            type="submit"
-            variant="contained"
-            className="customButton"
-          >
+          <StyledButton type="submit" className="containedButton">
             Add
           </StyledButton>
         </StyledDialogActions>

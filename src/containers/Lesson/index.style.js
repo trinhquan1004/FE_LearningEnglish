@@ -69,6 +69,12 @@ export const StyledButton = styled(Button)`
     min-width: 120px;
     margin: 20px;
   }
+  &&.containedButton {
+    min-width: 120px;
+    margin: 20px;
+    color: ${(props) => props.theme.palette.primary.contrastText};
+    background-color: ${(props) => props.theme.palette.primary.main};
+  }
 `;
 
 export const StyledTextField = styled(TextField)`

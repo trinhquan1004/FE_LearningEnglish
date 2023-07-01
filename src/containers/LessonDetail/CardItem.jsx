@@ -8,7 +8,7 @@ import {
   StyledDescTypography,
 } from './index.style';
 
-const CardItem = ({ card, onEditCard, onDeleteCard }) => {
+const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardClick = () => setIsFlipped(!isFlipped);
@@ -27,15 +27,13 @@ const CardItem = ({ card, onEditCard, onDeleteCard }) => {
           <StyledCardActions>
             <StyledCardButton
               className="customButton"
-              onClick={() => onEditCard(card)}
+              disabled={currentIndex === 0}
+              onClick={onPrevCard}
             >
-              Edit
+              Pre
             </StyledCardButton>
-            <StyledCardButton
-              className="customButton"
-              onClick={() => onDeleteCard(card)}
-            >
-              Delete
+            <StyledCardButton className="customButton" onClick={onNextCard}>
+              Next
             </StyledCardButton>
           </StyledCardActions>
         </>

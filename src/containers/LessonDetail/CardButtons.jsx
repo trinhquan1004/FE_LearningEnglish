@@ -1,20 +1,24 @@
 import React from 'react';
 import { StyledButton, ButtonGrid } from './index.style';
 
-const CardButtons = ({ onPrevCard, onNextCard, onReturn, currentIndex }) => (
+const CardButtons = ({
+  card,
+  onEditCard,
+  onDeleteCard,
+  onReturn,
+  onFinish,
+}) => (
   <ButtonGrid>
-    <StyledButton
-      onClick={onPrevCard}
-      className="customButton"
-      disabled={currentIndex === 0}
-    >
-      Previous
+    <StyledButton onClick={() => onEditCard(card)} className="customButton">
+      Edit
     </StyledButton>
-    <StyledButton onClick={onNextCard} className="customButton">
-      Next
+    <StyledButton onClick={() => onDeleteCard(card)} className="customButton">
+      Delete
     </StyledButton>
-    <StyledButton className="customButton newButton">Finish</StyledButton>
-    <StyledButton className="customButton newButton" onClick={onReturn}>
+    <StyledButton className="containedButton" onClick={onFinish}>
+      Finish
+    </StyledButton>
+    <StyledButton className="containedButton" onClick={onReturn}>
       Back Lesson
     </StyledButton>
   </ButtonGrid>
