@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   StyledCard,
-  StyledCardActions,
   StyledTitleTypography,
   StyledCardMedia,
   StyledCardButton,
@@ -14,36 +15,36 @@ const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
   const handleCardClick = () => setIsFlipped(!isFlipped);
 
   return (
-    <StyledCard
-      className={`customCard ${isFlipped ? 'flipped' : ''}`}
-      onClick={handleCardClick}
-    >
-      {!isFlipped && (
-        <>
-          <StyledTitleTypography className="titleTypo">
-            {card.name}
-          </StyledTitleTypography>
-          <StyledCardMedia image={card.imageUrl} />
-          <StyledCardActions>
-            <StyledCardButton
-              className="customButton"
-              disabled={currentIndex === 0}
-              onClick={onPrevCard}
-            >
-              Pre
-            </StyledCardButton>
-            <StyledCardButton className="customButton" onClick={onNextCard}>
-              Next
-            </StyledCardButton>
-          </StyledCardActions>
-        </>
-      )}
-      {isFlipped && (
-        <StyledDescTypography className="descTypo">
-          {card.desc}
-        </StyledDescTypography>
-      )}
-    </StyledCard>
+    <>
+      <StyledCardButton
+        className="customButton"
+        disabled={currentIndex === 0}
+        onClick={onPrevCard}
+      >
+        <ChevronLeftIcon />
+      </StyledCardButton>
+      <StyledCard
+        className={`customCard ${isFlipped ? 'flipped' : ''}`}
+        onClick={handleCardClick}
+      >
+        {!isFlipped && (
+          <>
+            <StyledTitleTypography className="titleTypo">
+              {card.name}
+            </StyledTitleTypography>
+            <StyledCardMedia image={card.imageUrl} />
+          </>
+        )}
+        {isFlipped && (
+          <StyledDescTypography className="descTypo">
+            {card.desc}
+          </StyledDescTypography>
+        )}
+      </StyledCard>
+      <StyledCardButton className="customButton" onClick={onNextCard}>
+        <ChevronRightIcon />
+      </StyledCardButton>
+    </>
   );
 };
 

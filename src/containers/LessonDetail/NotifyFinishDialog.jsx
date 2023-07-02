@@ -1,17 +1,18 @@
 import React from 'react';
-import { DialogTitle } from '@mui/material';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 import {
   StyledFinishTypography,
   StyledFinishDialog,
+  StyledTitleDialog,
   StyledFinishDialogActions,
   StyledFinishButton,
 } from './index.style';
 
 const NotifyFinishDialog = ({ open, onClose, onReturn }) => (
   <StyledFinishDialog open={open} onClose={onClose}>
-    <DialogTitle>Complete Lesson</DialogTitle>
+    <StyledTitleDialog className="title">Complete Lesson</StyledTitleDialog>
     <StyledFinishTypography className="customTypo">
-      Congratulations, you have completed this lesson!
+      Congratulations, you have completed this lesson! <CelebrationIcon />
     </StyledFinishTypography>
     <StyledFinishDialogActions className="customDialogActions">
       <StyledFinishButton onClick={onClose} className="customButton">

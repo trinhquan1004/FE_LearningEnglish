@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { DialogTitle, DialogContent, TextField } from '@mui/material';
+import { DialogContent, TextField } from '@mui/material';
 import {
   StyledDeleteTypography,
+  StyledTitleDialog,
   StyledDeleteDialog,
   StyledDialogActions,
   StyledDeleteButton,
@@ -29,7 +30,7 @@ const DialogDelete = ({ open, onClose, selectedCard, onDelete }) => {
 
   return (
     <StyledDeleteDialog open={open} onClose={onClose}>
-      <DialogTitle>Delete Card</DialogTitle>
+      <StyledTitleDialog className="title">Delete Card</StyledTitleDialog>
       <DialogContent>
         <StyledDeleteTypography className="customTypo">
           To delete the card &quot;{selectedCard?.name}&quot;, type the name to
@@ -41,7 +42,7 @@ const DialogDelete = ({ open, onClose, selectedCard, onDelete }) => {
           fullWidth
         />
       </DialogContent>
-      <StyledDialogActions>
+      <StyledDialogActions className="customDialogActions">
         <StyledDeleteButton onClick={handleClose} className="customButton">
           Cancel
         </StyledDeleteButton>

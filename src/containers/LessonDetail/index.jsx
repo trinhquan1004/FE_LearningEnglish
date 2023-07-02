@@ -98,7 +98,9 @@ const LessonDetail = ({ lessonId }) => {
   }, []);
 
   useEffect(() => {
-    if (currentIndex === cards.length - 1) setOpenFinishLesson(true);
+    if (currentIndex === cards.length - 1 && !cards.length === 1) {
+      setOpenFinishLesson(true);
+    }
   }, [currentIndex, cards]);
 
   return (
@@ -110,9 +112,15 @@ const LessonDetail = ({ lessonId }) => {
           Welcome to the cards!
         </StyledTypography>
         <StyledStack className="customStack">
+          <StyledTypography className="customTypo">
+            Keep going!
+          </StyledTypography>
           <Button variant="contained" onClick={handleOpenCreate}>
             Create Card
           </Button>
+          <StyledTypography className="customTypo">
+            {`${currentIndex + 1} / ${cards.length}`}
+          </StyledTypography>
         </StyledStack>
       </StyledBox>
       <StyledGrid>

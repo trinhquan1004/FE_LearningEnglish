@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar } from 'notistack';
-import { DialogTitle, DialogContent, Grid } from '@mui/material';
+import { DialogContent, Grid } from '@mui/material';
 import {
   StyledEditDialog,
+  StyledTitleDialog,
   StyledDialogActions,
   StyledEditButton,
   StyledTextField,
@@ -57,8 +58,7 @@ const DialogEditCard = ({
 
   return (
     <StyledEditDialog open={open} onClose={onClose}>
-      <DialogTitle>Edit Card</DialogTitle>
-      <br />
+      <StyledTitleDialog className="title">Edit Card</StyledTitleDialog>
       <DialogContent>
         <form onSubmit={handleEdit}>
           <Grid container spacing={4} alignItems="center">
@@ -90,7 +90,6 @@ const DialogEditCard = ({
               />
             </Grid>
           </Grid>
-          <br />
           <StyledDialogActions className="customDialogActions">
             <StyledEditButton onClick={onClose} className="customButton">
               Cancel

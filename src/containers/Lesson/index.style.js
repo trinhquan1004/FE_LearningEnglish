@@ -6,6 +6,7 @@ import {
   CardMedia,
   Typography,
   Dialog,
+  DialogTitle,
   DialogActions,
   TextField,
   Button,
@@ -55,12 +56,22 @@ export const StyledDialog = styled(Dialog)`
   },
 `;
 
+export const StyledTitleDialog = styled(DialogTitle)`
+  &&.title {
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7ac70c;
+  }
+`;
+
 export const StyledDialogActions = styled(DialogActions)`
   &&.customDialogActions {
     justify-content: center;
     display: flex;
     gap: 8px;
-    margin-top: 36px;
+    margin-top: 45px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -68,12 +79,14 @@ export const StyledButton = styled(Button)`
   &&.customButton {
     min-width: 120px;
     margin: 20px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
     min-width: 120px;
     margin: 20px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
 
@@ -88,18 +101,18 @@ export const StyledTextField = styled(TextField)`
 
 export const StyledDeleteTypography = styled(Typography)`
   &&.customTypo {
-    font-size: 1rem;
+    font-size: 20px;
     line-height: 1.5;
     font-weight: 500;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 45px;
   }
 `;
 
 export const StyledDeleteDialog = styled(Dialog)`
     & .MuiDialog-paper {
     width: 35%;
-    height: 45%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,14 +124,17 @@ export const StyledDeleteDialog = styled(Dialog)`
 export const StyledDeleteButton = styled(Button)`
   &&.customButton {
     min-width: 120px;
-    margin: 10px;
+    margin: 20px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.deleteButton {
     background-color: red;
     color: white;
+    border: 1px solid red;
   }
   &&.deleteButton.disabled {
     background-color: #ccc;
     pointer-events: none;
+    border: 1px solid #ccc;
   }
 `;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { DialogTitle, DialogContent, TextField } from '@mui/material';
+import { DialogContent, TextField } from '@mui/material';
 import {
   StyledDeleteTypography,
   StyledDeleteDialog,
+  StyledTitleDialog,
   StyledDialogActions,
   StyledDeleteButton,
 } from './index.style';
@@ -29,7 +30,7 @@ const DialogDelete = ({ open, onClose, selectedItem, onDelete }) => {
 
   return (
     <StyledDeleteDialog open={open} onClose={onClose}>
-      <DialogTitle>Delete Lesson</DialogTitle>
+      <StyledTitleDialog className="title">Delete Lesson</StyledTitleDialog>
       <DialogContent>
         <StyledDeleteTypography className="customTypo">
           To delete the lesson &quot;{selectedItem?.title}&quot;, type the name
@@ -41,7 +42,7 @@ const DialogDelete = ({ open, onClose, selectedItem, onDelete }) => {
           fullWidth
         />
       </DialogContent>
-      <StyledDialogActions>
+      <StyledDialogActions className="customDialogActions">
         <StyledDeleteButton onClick={handleClose} className="customButton">
           Cancel
         </StyledDeleteButton>

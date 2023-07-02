@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { DialogTitle, DialogContent, Grid } from '@mui/material';
+import { DialogContent, Grid } from '@mui/material';
 import {
   StyledAddDialog,
+  StyledTitleDialog,
   StyledDialogActions,
   StyledAddButton,
   StyledTextField,
@@ -41,8 +42,7 @@ const DialogAddCard = ({ open, onClose, lessonId, fetchCards }) => {
 
   return (
     <StyledAddDialog open={open} onClose={onClose}>
-      <DialogTitle>Add Card</DialogTitle>
-      <br />
+      <StyledTitleDialog className="title">Add Card</StyledTitleDialog>
       <DialogContent>
         <form onSubmit={handleCreate}>
           <Grid container spacing={4} alignItems="center">
@@ -74,7 +74,6 @@ const DialogAddCard = ({ open, onClose, lessonId, fetchCards }) => {
               />
             </Grid>
           </Grid>
-          <br />
           <StyledDialogActions className="customDialogActions">
             <StyledAddButton onClick={onClose} className="customButton">
               Cancel

@@ -6,9 +6,9 @@ import {
   Stack,
   Button,
   Card,
-  CardActions,
   CardMedia,
   Dialog,
+  DialogTitle,
   DialogActions,
   TextField,
 } from '@mui/material';
@@ -33,6 +33,16 @@ export const StyledTypography = styled(Typography)`
     margin-bottom: 0.5rem;
     white-space: nowrap;
   }
+  &&.customTypo {
+    width: 150px;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #7ac70c;
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+  }
 `;
 
 export const StyledStack = styled(Stack)`
@@ -41,7 +51,7 @@ export const StyledStack = styled(Stack)`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 2rem;
+    gap: 5rem;
   }
 `;
 
@@ -55,6 +65,7 @@ export const StyledButton = styled(Button)`
     margin: 8px;
     background-color: ${(props) => props.theme.palette.primary.main};
     color: ${(props) => props.theme.palette.primary.contrastText};
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
 
@@ -92,19 +103,13 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const StyledCardActions = styled(CardActions)`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
 export const StyledTitleTypography = styled(Typography)`
   &&.titleTypo {
     display: flex;
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: ${(props) => props.theme.palette.secondary.main};
   }
 `;
@@ -132,29 +137,40 @@ export const StyledCardMedia = styled(CardMedia)`
 
 export const StyledCardButton = styled(Button)`
   &&.customButton {
-    margin-bottom: 60px;
-    width: 100%;
+    width: 80px;
+    margin: 10px;
     color: ${(props) => props.theme.palette.primary.main};
     background-color: #ffff;
-    margin-right: 20px;
-    margin-left: 20px;
+    font-size: 100px;
+  }
+  .MuiSvgIcon-root {
+    font-size: 64px;
+  }
+`;
+
+export const StyledTitleDialog = styled(DialogTitle)`
+  &&.title {
+    margin-bottom: 28px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7ac70c;
   }
 `;
 
 export const StyledDeleteTypography = styled(Typography)`
   &&.customTypo {
-    font-size: 1rem;
+    font-size: 20px;
     line-height: 1.5;
     font-weight: 500;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 45px;
   }
 `;
 
 export const StyledDeleteDialog = styled(Dialog)`
     & .MuiDialog-paper {
     width: 35%;
-    height: 45%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -168,22 +184,26 @@ export const StyledDialogActions = styled(DialogActions)`
     justify-content: center;
     display: flex;
     gap: 8px;
-    margin-top: 36px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 `;
 
 export const StyledDeleteButton = styled(Button)`
   &&.customButton {
     min-width: 120px;
-    margin: 10px;
+    margin: 20px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.deleteButton {
     background-color: red;
     color: white;
+    border: 1px solid red;
   }
   &&.deleteButton.disabled {
     background-color: #ccc;
     pointer-events: none;
+    border: 1px solid #ccc;
   }
 `;
 
@@ -204,6 +224,7 @@ export const StyledAddButton = styled(Button)`
     min-width: 120px;
     margin: 20px;
     margin-top: 40px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
     min-width: 120px;
@@ -211,6 +232,7 @@ export const StyledAddButton = styled(Button)`
     margin-top: 40px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
 
@@ -240,6 +262,7 @@ export const StyledEditButton = styled(Button)`
     min-width: 120px;
     margin: 20px;
     margin-top: 40px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
     min-width: 120px;
@@ -247,23 +270,27 @@ export const StyledEditButton = styled(Button)`
     margin-top: 40px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
 
 export const StyledFinishTypography = styled(Typography)`
   &&.customTypo {
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 1.5;
     font-weight: 500;
     color: #333;
     margin: 25px;
   }
+  .MuiSvgIcon-root {
+    color: #7ac70c;
+  }
 `;
 
 export const StyledFinishDialog = styled(Dialog)`
     & .MuiDialog-paper {
-    width: 30%;
-    height: 45%;
+    width: 35%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -284,11 +311,13 @@ export const StyledFinishButton = styled(Button)`
   &&.customButton {
     min-width: 120px;
     margin: 20px;
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
     min-width: 120px;
     margin: 20px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
+    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;

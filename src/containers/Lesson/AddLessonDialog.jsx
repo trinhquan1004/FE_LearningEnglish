@@ -1,7 +1,8 @@
 import React from 'react';
-import { DialogTitle, DialogContent, Grid } from '@mui/material';
+import { DialogContent, Grid } from '@mui/material';
 import {
   StyledDialog,
+  StyledTitleDialog,
   StyledDialogActions,
   StyledButton,
   StyledTextField,
@@ -17,8 +18,7 @@ const DialogAddLesson = ({
   onSubmitAdd,
 }) => (
   <StyledDialog open={open} onClose={onClose}>
-    <DialogTitle>Create Lesson</DialogTitle>
-    <br />
+    <StyledTitleDialog className="title">Create Lesson</StyledTitleDialog>
     <DialogContent>
       <form onSubmit={onSubmitAdd}>
         <Grid container spacing={4} alignItems="center">
@@ -41,7 +41,6 @@ const DialogAddLesson = ({
             />
           </Grid>
         </Grid>
-        <br />
         <StyledDialogActions className="customDialogActions">
           <StyledButton onClick={onClose} className="customButton">
             Cancel
