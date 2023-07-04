@@ -42,16 +42,18 @@ export const StyledStack = styled(Stack)`
 `;
 
 export const StyledGrid = styled(Grid)`
-  display: grid;
-  grid-template-columns: 40px 200px;
-  gap: 5px;
-  row-gap: 2px;
-  justify-content: center;
-  align-items: center;
-  width: 240px;
-  margin: 0 auto;
-  place-content: center;
-  > :nth-child(even) {
-    padding: 6px 0px;
+  && {
+    display: grid;
+    grid-template-columns: 40px 200px;
+    gap: 5px;
+    row-gap: 2px;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+    margin: 0 auto;
+    place-content: center;
+    > :nth-child(even) {
+      padding: 6px 0px;
+    }
   }
 `;

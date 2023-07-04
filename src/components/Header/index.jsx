@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Menu } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import {
+  Notifications,
   AccountCircle,
   AccountTree,
   Forum,
@@ -9,6 +11,7 @@ import {
   Help,
 } from '@mui/icons-material';
 import {
+  StyledAvatar,
   StyledTypography,
   StyledBox,
   StyledIconButton,
@@ -18,6 +21,9 @@ import {
 
 const Header = ({ onLogout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+
+  const handleReturn = () => navigate('/');
 
   const handleIconClick = (event) => setAnchorEl(event.currentTarget);
 
@@ -26,17 +32,19 @@ const Header = ({ onLogout }) => {
   const onLogoutClick = () => {
     onLogout();
     handleCloseMenu();
-    window.location.href = '/lesson';
+    window.location.href = '/login';
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar>
       <Toolbar>
-        <StyledTypography className="titleTypo">
-          LearnEnglish | FlashCards
-        </StyledTypography>
+        <StyledAvatar src="./logo.png" onClick={handleReturn} />
+        <StyledTypography onClick={handleReturn}>FlashCards</StyledTypography>
         <StyledBox className="customBox" />
         <StyledBox>
+          <StyledIconButton>
+            <Notifications />
+          </StyledIconButton>
           <StyledIconButton onClick={handleIconClick}>
             <AccountCircle />
           </StyledIconButton>

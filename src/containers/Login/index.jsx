@@ -55,7 +55,7 @@ const LoginContainer = () => {
     }
   };
 
-  if (isLogined) window.location.href = '/lesson';
+  if (isLogined) window.location.href = '/';
 
   return (
     <StyledGrid className="mainContainer">
@@ -114,7 +114,7 @@ const LoginContainer = () => {
             </StyledButton>
             <Grid container>
               <Grid item xs>
-                <Link href="/" variant="body2">
+                <Link href="/login" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

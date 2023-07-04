@@ -1,16 +1,33 @@
 import styled from 'styled-components';
-import { Typography, Box, IconButton, MenuItem, Grid } from '@mui/material';
+import {
+  Avatar,
+  Typography,
+  Box,
+  IconButton,
+  MenuItem,
+  Grid,
+} from '@mui/material';
+
+export const StyledAvatar = styled(Avatar)`
+  && {
+    cursor: pointer;
+    margin-left: 30px;
+    width: 90px;
+    height: 90px;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+`;
 
 export const StyledTypography = styled(Typography)`
   && {
-    font-weight: 500;
-    font-size: 20px;
-  }
-  &&.titleTypo {
+    cursor: pointer;
     font-size: 24px;
     color: inherit;
     white-space: nowrap;
-    margin-left: 50px;
+    margin-left: 10px;
     font-weight: bold;
   }
 `;
@@ -27,6 +44,7 @@ export const StyledBox = styled(Box)`
 export const StyledIconButton = styled(IconButton)`
   && {
     color: inherit;
+    margin-left: 10px;
   }
   .MuiSvgIcon-root {
     font-size: 36px;
@@ -53,11 +71,13 @@ export const StyledMenuItem = styled(MenuItem)`
 `;
 
 export const StyledGrid = styled(Grid)`
-  display: grid;
-  grid-template-columns: auto;
-  gap: 5px;
-  align-items: center;
-  width: 240px;
-  padding: 0px 5px;
-  margin: 10px 0px;
+  && {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+    align-items: center;
+    width: 240px;
+    padding: 0px 5px;
+    margin: 10px 0px;
+  }
 `;
