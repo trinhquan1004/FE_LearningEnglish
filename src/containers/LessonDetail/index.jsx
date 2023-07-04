@@ -106,7 +106,7 @@ const LessonDetail = ({ lessonId }) => {
   return (
     <>
       <CssBaseline />
-      <Header handleLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       <StyledBox>
         <StyledTypography className="titleTypo">
           Welcome to the cards!

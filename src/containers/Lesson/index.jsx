@@ -117,7 +117,7 @@ const LessonContainer = () => {
   return (
     <>
       <CssBaseline />
-      <Header handleLogout={handleLogout} />
+      <Header onLogout={handleLogout} />
       <Welcome onAddLesson={handleAddLesson} />
       <StyledContainer>
         <Grid container spacing={4}>

@@ -109,7 +109,7 @@ export const StyledTitleTypography = styled(Typography)`
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: ${(props) => props.theme.palette.secondary.main};
   }
 `;
@@ -117,13 +117,13 @@ export const StyledTitleTypography = styled(Typography)`
 export const StyledDescTypography = styled(Typography)`
   &&.descTypo {
     padding: 10px;
-    font-size: 3rem;
+    font-size: 26px;
     color: black;
     transform: rotateY(180deg);
     white-space: pre-wrap;
     word-break: break-word;
     width: 320px;
-    text-align: center;
+    text-align: left;
   }
 `;
 
