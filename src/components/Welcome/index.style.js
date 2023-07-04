@@ -1,38 +1,37 @@
 import styled from 'styled-components';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 export const StyledBox = styled(Box)`
-  padding-top: 64px;
-  padding-bottom: 48px;
-  background-color: ${(props) => props.theme.palette.background.paper};
+  && {
+    padding: 64px 0px;
+  }
 `;
 
 export const StyledTypography = styled(Typography)`
+  && {
+    font-size: 32px;
+    text-align: center;
+    color: ${(props) => props.theme.palette.text.secondary};
+    margin-bottom: 16px;
+    white-space: normal;
+  }
   &&.titleTypo {
-    font-size: 3.5rem;
+    font-size: 56px;
     text-align: center;
     color: ${(props) => props.theme.palette.text.primary};
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
     white-space: nowrap;
   }
 `;
 
-export const StyledTypography1 = styled(Typography)`
-  &&.paraTypo {
-    font-size: 2rem;
-    text-align: center;
-    color: ${(props) => props.theme.palette.text.secondary};
-    margin-bottom: 1rem;
-    white-space: normal;
-  }
-`;
-
-export const StyledStack = styled(Stack)`
-  &&.customStack {
-    padding-top: 2rem;
+export const StyledButton = styled(Button)`
+  && {
+    padding: 10px;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 2rem;
+    margin: 0 auto;
+    margin-top: 30px;
+    color: #fff;
+    background-color: #1976d2 !important;
   }
 `;
