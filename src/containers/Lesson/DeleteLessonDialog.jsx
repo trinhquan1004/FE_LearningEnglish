@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DialogContent, TextField } from '@mui/material';
 import {
-  StyledDeleteTypography,
+  StyledTypography,
   StyledDeleteDialog,
   StyledTitleDialog,
   StyledDialogActions,
@@ -32,26 +32,22 @@ const DialogDelete = ({ open, onClose, selectedItem, onDelete }) => {
     <StyledDeleteDialog open={open} onClose={onClose}>
       <StyledTitleDialog className="title">Delete Lesson</StyledTitleDialog>
       <DialogContent>
-        <StyledDeleteTypography className="customTypo">
+        <StyledTypography className="deleteLessonTypo">
           To delete the lesson &quot;{selectedItem?.title}&quot;, type the name
           to confirm.
-        </StyledDeleteTypography>
+        </StyledTypography>
         <TextField
           label="Lesson Name"
           onChange={handleConfirmedChange}
           fullWidth
         />
       </DialogContent>
-      <StyledDialogActions className="customDialogActions">
-        <StyledDeleteButton onClick={handleClose} className="customButton">
-          Cancel
-        </StyledDeleteButton>
+      <StyledDialogActions>
+        <StyledDeleteButton onClick={handleClose}>Cancel</StyledDeleteButton>
         <StyledDeleteButton
           onClick={onDelete}
           variant="contained"
-          className={`customButton deleteButton ${
-            !confirmed ? 'disabled' : ''
-          }`}
+          className={` deleteButton ${!confirmed ? 'disabled' : ''}`}
           disabled={!confirmed}
         >
           Delete

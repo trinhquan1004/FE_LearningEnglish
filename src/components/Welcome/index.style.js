@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 
 export const StyledBox = styled(Box)`
   && {
-    padding: 64px 0px;
+    padding-top: 164px;
   }
 `;
 
 export const StyledTypography = styled(Typography)`
-  && {
+  &&.customTypo {
     font-size: 32px;
     text-align: center;
     color: ${(props) => props.theme.palette.text.secondary};
@@ -21,6 +21,13 @@ export const StyledTypography = styled(Typography)`
     color: ${(props) => props.theme.palette.text.primary};
     margin-bottom: 8px;
     white-space: nowrap;
+  }
+  &&.lessonTypo {
+    font-size: 25px;
+    font-weight: bold;
+    color: ${(props) => props.theme.palette.primary.main};
+    margin-left: 155px;
+    margin-top: 30px;
   }
 `;
 

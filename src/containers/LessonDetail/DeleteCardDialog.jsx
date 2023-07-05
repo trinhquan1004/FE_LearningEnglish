@@ -42,16 +42,11 @@ const DialogDelete = ({ open, onClose, selectedCard, onDelete }) => {
           fullWidth
         />
       </DialogContent>
-      <StyledDialogActions className="customDialogActions">
-        <StyledDeleteButton onClick={handleClose} className="customButton">
-          Cancel
-        </StyledDeleteButton>
+      <StyledDialogActions className="actionsDelete">
+        <StyledDeleteButton onClick={handleClose}>Cancel</StyledDeleteButton>
         <StyledDeleteButton
           onClick={onDelete}
-          variant="contained"
-          className={`customButton deleteButton ${
-            !confirmed ? 'disabled' : ''
-          }`}
+          className={`deleteButton ${!confirmed ? 'disabled' : ''}`}
           disabled={!confirmed}
         >
           Delete

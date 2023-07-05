@@ -5,7 +5,7 @@ import {
   StyledEditDialog,
   StyledTitleDialog,
   StyledDialogActions,
-  StyledEditButton,
+  StyledButton1,
   StyledTextField,
 } from './index.style';
 import { updateCard } from '../../apis/card';
@@ -90,13 +90,11 @@ const DialogEditCard = ({
               />
             </Grid>
           </Grid>
-          <StyledDialogActions className="customDialogActions">
-            <StyledEditButton onClick={onClose} className="customButton">
-              Cancel
-            </StyledEditButton>
-            <StyledEditButton type="submit" className="containedButton">
+          <StyledDialogActions>
+            <StyledButton1 onClick={onClose}>Cancel</StyledButton1>
+            <StyledButton1 type="submit" className="containedButton">
               Edit
-            </StyledEditButton>
+            </StyledButton1>
           </StyledDialogActions>
         </form>
       </DialogContent>

@@ -41,7 +41,7 @@ const DialogAddLesson = ({
             />
           </Grid>
         </Grid>
-        <StyledDialogActions className="customDialogActions">
+        <StyledDialogActions>
           <StyledButton onClick={onClose} className="customButton">
             Cancel
           </StyledButton>

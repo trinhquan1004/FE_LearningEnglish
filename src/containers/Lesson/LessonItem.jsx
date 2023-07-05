@@ -1,39 +1,51 @@
-import React from 'react';
-import { CardContent, Button, Typography, Grid } from '@mui/material';
+import React, { useContext } from 'react';
+import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../checkAdminContext';
 import {
   StyledCard,
+  StyledButton,
   StyledCardActions,
-  StyledItemTypography,
+  StyledTypography,
   StyledCardMedia,
+  StyledCardContent,
 } from './index.style';
 
 const LessonItem = ({ lesson, onEditLesson, onDeleteLesson }) => {
+  const isAdmin = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleViewLessonDetail = () => navigate(`/lesson/${lesson.id}`);
+  const handleViewLesson = () => navigate(`/${lesson.id}`);
 
   return (
     <Grid item xs={12} sm={6} md={4}>
       <StyledCard>
-        <StyledCardMedia image={lesson.imageUrl} />
-        <CardContent sx={{ flexGrow: 1 }}>
-          <StyledItemTypography className="titleTypo">
+        <StyledCardMedia image={lesson.imageUrl} onClick={handleViewLesson} />
+        <StyledCardContent>
+          <StyledTypography className="itemTitle" onClick={handleViewLesson}>
             {lesson.title}
-          </StyledItemTypography>
-          <Typography>
+          </StyledTypography>
+          <StyledTypography className="itemDesc">
             This is a beginner&apos;s English lesson about {lesson.title}.
-          </Typography>
-        </CardContent>
+          </StyledTypography>
+          <hr />
+        </StyledCardContent>
         <StyledCardActions>
-          <Button size="small" onClick={handleViewLessonDetail}>
-            View
-          </Button>
-          <Button size="small" onClick={() => onEditLesson(lesson)}>
-            Edit
-          </Button>
-          <Button size="small" onClick={() => onDeleteLesson(lesson)}>
-            Delete
-          </Button>
+          {!isAdmin && (
+            <StyledButton className="ViewBtn" onClick={handleViewLesson}>
+              View
+            </StyledButton>
+          )}
+          {isAdmin && (
+            <>
+              <StyledButton onClick={handleViewLesson}>View</StyledButton>
+              <StyledButton onClick={() => onEditLesson(lesson)}>
+                Edit
+              </StyledButton>
+              <StyledButton onClick={() => onDeleteLesson(lesson)}>
+                Delete
+              </StyledButton>
+            </>
+          )}
         </StyledCardActions>
       </StyledCard>
     </Grid>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { CssBaseline, Button } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { getCards, deleteCard } from '../../apis/card';
 import { removeToken } from '../../utils/localStorage';
+import { AuthContext } from '../../checkAdminContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CardItem from './CardItem';
@@ -17,9 +18,11 @@ import {
   StyledBox,
   StyledStack,
   StyledTypography,
+  StyledButton,
 } from './index.style';
 
 const LessonDetail = ({ lessonId }) => {
+  const isAdmin = useContext(AuthContext);
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);
@@ -32,7 +35,7 @@ const LessonDetail = ({ lessonId }) => {
 
   const navigate = useNavigate();
 
-  const handleReturn = () => navigate('/lesson');
+  const handleReturn = () => navigate('/');
 
   const fetchCards = async () => {
     const response = await getCards(lessonId);
@@ -112,13 +115,13 @@ const LessonDetail = ({ lessonId }) => {
           Welcome to the cards!
         </StyledTypography>
         <StyledStack className="customStack">
-          <StyledTypography className="customTypo">
-            Keep going!
-          </StyledTypography>
-          <Button variant="contained" onClick={handleOpenCreate}>
-            Create Card
-          </Button>
-          <StyledTypography className="customTypo">
+          <StyledTypography className="paraTypo">Keep going!</StyledTypography>
+          {isAdmin && (
+            <StyledButton className="createCard" onClick={handleOpenCreate}>
+              Create Card
+            </StyledButton>
+          )}
+          <StyledTypography className="paraTypo">
             {`${currentIndex + 1} / ${cards.length}`}
           </StyledTypography>
         </StyledStack>

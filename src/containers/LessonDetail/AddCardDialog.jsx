@@ -5,7 +5,7 @@ import {
   StyledAddDialog,
   StyledTitleDialog,
   StyledDialogActions,
-  StyledAddButton,
+  StyledButton1,
   StyledTextField,
 } from './index.style';
 import { createCard } from '../../apis/card';
@@ -74,13 +74,11 @@ const DialogAddCard = ({ open, onClose, lessonId, fetchCards }) => {
               />
             </Grid>
           </Grid>
-          <StyledDialogActions className="customDialogActions">
-            <StyledAddButton onClick={onClose} className="customButton">
-              Cancel
-            </StyledAddButton>
-            <StyledAddButton type="submit" className="containedButton">
+          <StyledDialogActions>
+            <StyledButton1 onClick={onClose}>Cancel</StyledButton1>
+            <StyledButton1 type="submit" className="containedButton">
               Add
-            </StyledAddButton>
+            </StyledButton1>
           </StyledDialogActions>
         </form>
       </DialogContent>

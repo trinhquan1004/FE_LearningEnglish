@@ -3,10 +3,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   StyledCard,
-  StyledTitleTypography,
+  StyledItemTypography,
   StyledCardMedia,
   StyledCardButton,
-  StyledDescTypography,
 } from './index.style';
 
 const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
@@ -29,16 +28,16 @@ const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
       >
         {!isFlipped && (
           <>
-            <StyledTitleTypography className="titleTypo">
+            <StyledItemTypography className="titleTypo">
               {card.name}
-            </StyledTitleTypography>
+            </StyledItemTypography>
             <StyledCardMedia image={card.imageUrl} />
           </>
         )}
         {isFlipped && (
-          <StyledDescTypography className="descTypo">
+          <StyledItemTypography className="descTypo">
             {card.desc}
-          </StyledDescTypography>
+          </StyledItemTypography>
         )}
       </StyledCard>
       <StyledCardButton className="customButton" onClick={onNextCard}>

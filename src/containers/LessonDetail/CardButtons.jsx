@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../checkAdminContext';
 import { StyledButton, ButtonGrid } from './index.style';
 
 const CardButtons = ({
@@ -7,21 +8,24 @@ const CardButtons = ({
   onDeleteCard,
   onReturn,
   onFinish,
-}) => (
-  <ButtonGrid>
-    <StyledButton onClick={() => onEditCard(card)} className="customButton">
-      Edit
-    </StyledButton>
-    <StyledButton onClick={() => onDeleteCard(card)} className="customButton">
-      Delete
-    </StyledButton>
-    <StyledButton className="containedButton" onClick={onFinish}>
-      Finish
-    </StyledButton>
-    <StyledButton className="containedButton" onClick={onReturn}>
-      Back Lesson
-    </StyledButton>
-  </ButtonGrid>
-);
+}) => {
+  const isAdmin = useContext(AuthContext);
 
+  return (
+    <ButtonGrid>
+      {isAdmin && (
+        <>
+          <StyledButton onClick={() => onEditCard(card)}>Edit</StyledButton>
+          <StyledButton onClick={() => onDeleteCard(card)}>Delete</StyledButton>
+        </>
+      )}
+      <StyledButton className="containedButton" onClick={onFinish}>
+        Finish
+      </StyledButton>
+      <StyledButton className="containedButton" onClick={onReturn}>
+        Back Lesson
+      </StyledButton>
+    </ButtonGrid>
+  );
+};
 export default CardButtons;

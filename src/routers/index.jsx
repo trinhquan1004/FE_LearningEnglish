@@ -18,15 +18,21 @@ const AppRouter = () => {
     <Router>
       <Routes>
         <Route
-          path="/login"
-          element={token ? <Navigate to="/lesson" /> : <LoginPage />}
-        />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/lesson"
+          path="/"
           element={!token ? <Navigate to="/login" /> : <LessonPage />}
         />
-        <Route path="/lesson/:lessonId" element={<LessonDetailPage />} />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <LoginPage />}
+        />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" /> : <RegisterPage />}
+        />
+        <Route
+          path="/:lessonId"
+          element={!token ? <Navigate to="/login" /> : <LessonDetailPage />}
+        />
       </Routes>
     </Router>
   );

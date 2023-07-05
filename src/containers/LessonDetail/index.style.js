@@ -14,15 +14,19 @@ import {
 } from '@mui/material';
 
 export const StyledGrid = styled(Grid)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  && {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const StyledBox = styled(Box)`
-  padding-top: 64px;
-  padding-bottom: 48px;
-  background-color: ${(props) => props.theme.palette.background.paper};
+  && {
+    padding-top: 64px;
+    padding-bottom: 48px;
+    background-color: ${(props) => props.theme.palette.background.paper};
+  }
 `;
 
 export const StyledTypography = styled(Typography)`
@@ -30,10 +34,11 @@ export const StyledTypography = styled(Typography)`
     font-size: 3.5rem;
     text-align: center;
     color: ${(props) => props.theme.palette.text.primary};
+    padding-top: 120px;
     margin-bottom: 0.5rem;
     white-space: nowrap;
   }
-  &&.customTypo {
+  &&.paraTypo {
     width: 150px;
     height: 40px;
     font-size: 1.5rem;
@@ -56,29 +61,34 @@ export const StyledStack = styled(Stack)`
 `;
 
 export const StyledButton = styled(Button)`
-  &&.customButton {
+  && {
     margin: 8px;
     color: ${(props) => props.theme.palette.primary.main};
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
-    margin: 8px;
     background-color: ${(props) => props.theme.palette.primary.main};
     color: ${(props) => props.theme.palette.primary.contrastText};
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
+  }
+  &&.createCard {
+    margin: 0px;
+    background-color: ${(props) => props.theme.palette.primary.main};
+    color: ${(props) => props.theme.palette.primary.contrastText};
   }
 `;
 
 export const ButtonGrid = styled(Grid)`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
-  padding-top: 30px;
-  margin: 0 auto;
-  place-content: center;
+  && {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    padding-top: 30px;
+    margin: 0 auto;
+    place-content: center;
+  }
 `;
 
 export const StyledCard = styled(Card)`
@@ -103,18 +113,16 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const StyledTitleTypography = styled(Typography)`
+export const StyledItemTypography = styled(Typography)`
   &&.titleTypo {
     display: flex;
     font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 3rem;
+    margin: 20px 10px;
+    margin-top: 40px;
+    padding: 10px 10px;
+    font-size: 2.5rem;
     color: ${(props) => props.theme.palette.secondary.main};
   }
-`;
-
-export const StyledDescTypography = styled(Typography)`
   &&.descTypo {
     padding: 10px;
     font-size: 26px;
@@ -128,11 +136,13 @@ export const StyledDescTypography = styled(Typography)`
 `;
 
 export const StyledCardMedia = styled(CardMedia)`
-  display: flex;
-  justify-content: center;
-  width: 65%;
-  padding-top: 65%;
-  margin-bottom: 10%;
+  && {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    padding-top: 65%;
+    margin-bottom: 60px;
+  }
 `;
 
 export const StyledCardButton = styled(Button)`
@@ -170,7 +180,7 @@ export const StyledDeleteTypography = styled(Typography)`
 export const StyledDeleteDialog = styled(Dialog)`
     & .MuiDialog-paper {
     width: 35%;
-    height: 70%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -180,19 +190,26 @@ export const StyledDeleteDialog = styled(Dialog)`
 `;
 
 export const StyledDialogActions = styled(DialogActions)`
-  &&.customDialogActions {
+  && {
     justify-content: center;
     display: flex;
     gap: 8px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+  &&.actionsDelete {
+    justify-content: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 60px;
   }
 `;
 
 export const StyledDeleteButton = styled(Button)`
-  &&.customButton {
+  && {
     min-width: 120px;
     margin: 20px;
+    margin-top: 0px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.deleteButton {
@@ -219,23 +236,6 @@ export const StyledAddDialog = styled(Dialog)`
   },
 `;
 
-export const StyledAddButton = styled(Button)`
-  &&.customButton {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 40px;
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
-  }
-  &&.containedButton {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 40px;
-    color: ${(props) => props.theme.palette.primary.contrastText};
-    background-color: ${(props) => props.theme.palette.primary.main};
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
-  }
-`;
-
 export const StyledTextField = styled(TextField)`
   &&.customTextField {
     width: 100%;
@@ -257,20 +257,17 @@ export const StyledEditDialog = styled(Dialog)`
   },
 `;
 
-export const StyledEditButton = styled(Button)`
-  &&.customButton {
+export const StyledButton1 = styled(Button)`
+  && {
     min-width: 120px;
     margin: 20px;
+    margin-bottom: 0px;
     margin-top: 40px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 40px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
 
@@ -300,7 +297,7 @@ export const StyledFinishDialog = styled(Dialog)`
 `;
 
 export const StyledFinishDialogActions = styled(DialogActions)`
-  &&.customDialogActions {
+  && {
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -308,16 +305,13 @@ export const StyledFinishDialogActions = styled(DialogActions)`
 `;
 
 export const StyledFinishButton = styled(Button)`
-  &&.customButton {
+  && {
     min-width: 120px;
     margin: 20px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
-    min-width: 120px;
-    margin: 20px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
 `;
