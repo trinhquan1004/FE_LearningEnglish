@@ -11,16 +11,18 @@ export const StyledGrid = styled(Grid).attrs({
 `;
 
 export const StyledBackgroundGrid = styled(Grid)`
-  background-image: url(https://source.unsplash.com/random?wallpapers);
-  background-repeat: no-repeat;
-  background-color: (t) =>
-    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900];
-  background-size: cover;
-  background-position: center;
+  && {
+    background-image: url(https://source.unsplash.com/random?wallpapers);
+    background-repeat: no-repeat;
+    background-color: (t) =>
+      t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900];
+    background-size: cover;
+    background-position: center;
+  }
 `;
 
 export const StyledBox = styled(Box)`
-  &&.customBox {
+  && {
     margin-top: 64px;
     margin-bottom: 64px;
     margin-left: 32px;
@@ -32,13 +34,15 @@ export const StyledBox = styled(Box)`
 `;
 
 export const StyledTypography = styled(Typography)`
-  font-family: Lato !important;
-  text-shadow: 2px 2px 6px rgba(0, 128, 0, 0.2);
-  font-weight: bold !important;
-  color: rgb(26, 168, 26);
-  font-size: 30px !important;
-  line-height: 1.5;
-  text-align: center;
+  && {
+    font-family: Lato;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: ${(props) => props.theme.palette.primary.main};
+    font-size: 30px;
+    line-height: 1.5;
+    text-align: center;
+  }
 `;
 
 export const StyledAvatar = styled(Avatar)`

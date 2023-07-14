@@ -5,7 +5,7 @@ import {
   Box,
   IconButton,
   MenuItem,
-  Grid,
+  Menu,
 } from '@mui/material';
 
 export const StyledAvatar = styled(Avatar)`
@@ -35,6 +35,7 @@ export const StyledTypography = styled(Typography)`
 export const StyledBox = styled(Box)`
   && {
     margin: 20px 30px;
+    margin-right: 10px;
   }
   &&.customBox {
     flex-grow: 1;
@@ -53,8 +54,9 @@ export const StyledIconButton = styled(IconButton)`
 
 export const StyledMenuItem = styled(MenuItem)`
   && {
-    color: ${(props) => props.theme.palette.primary.main};
     margin: 0 12px;
+    font-size: 18px;
+    color: ${(props) => props.theme.palette.primary.main};
     &:hover {
       background-color: ${(props) => props.theme.palette.primary.main};
       color: ${(props) => props.theme.palette.primary.contrastText};
@@ -66,18 +68,29 @@ export const StyledMenuItem = styled(MenuItem)`
     font-weight: bold;
     font-size: 18px;
     border: 3px solid skyblue;
-    padding: 8px;
+    margin-bottom: 10px;
   }
 `;
 
-export const StyledGrid = styled(Grid)`
+export const StyledMenu = styled(Menu)`
   && {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 5px;
-    align-items: center;
-    width: 240px;
-    padding: 0px 5px;
-    margin: 10px 0px;
+    .MuiPaper-root {
+      margin-left: -40px;
+      overflow: visible;
+      filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.3));
+      margin-top: 10px;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 14px;
+        width: 14px;
+        height: 14px;
+        background-color: #ffff;
+        transform: translateY(-50%) rotate(45deg);
+        z-index: 0;
+      }
+    }
   }
 `;

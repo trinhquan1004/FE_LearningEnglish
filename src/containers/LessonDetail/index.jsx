@@ -19,6 +19,7 @@ import {
   StyledStack,
   StyledTypography,
   StyledButton,
+  StyledStarIcon,
 } from './index.style';
 
 const LessonDetail = ({ lessonId }) => {
@@ -30,6 +31,7 @@ const LessonDetail = ({ lessonId }) => {
   const [openCreate, setOpenCreate] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openFinishLesson, setOpenFinishLesson] = useState(false);
+  const [completedCards, setCompletedCards] = useState([]);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -53,14 +55,17 @@ const LessonDetail = ({ lessonId }) => {
       setOpenFinishLesson(true);
       return;
     }
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePrevCard = () => setCurrentIndex((prevIndex) => prevIndex - 1);
 
   const handleFinish = () => setOpenFinishLesson(true);
 
-  const handleCloseFinish = () => setOpenFinishLesson(false);
+  const handleCloseFinish = () => {
+    setCurrentIndex(0);
+    setOpenFinishLesson(false);
+  };
 
   const handleOpenCreate = () => setOpenCreate(true);
 
@@ -96,6 +101,16 @@ const LessonDetail = ({ lessonId }) => {
     handleCloseDelete();
   };
 
+  const handleMarkCompleted = (cardId) => {
+    if (completedCards.includes(cardId)) {
+      setCompletedCards((prevCompleted) =>
+        prevCompleted.filter((id) => id !== cardId),
+      );
+      return;
+    }
+    setCompletedCards((prevCompleted) => [...prevCompleted, cardId]);
+  };
+
   useEffect(() => {
     fetchCards(lessonId);
   }, []);
@@ -110,7 +125,7 @@ const LessonDetail = ({ lessonId }) => {
     <>
       <CssBaseline />
       <Header onLogout={handleLogout} />
-      <StyledBox>
+      <StyledBox className="customBox">
         <StyledTypography className="titleTypo">
           Welcome to the cards!
         </StyledTypography>
@@ -125,6 +140,12 @@ const LessonDetail = ({ lessonId }) => {
             {`${currentIndex + 1} / ${cards.length}`}
           </StyledTypography>
         </StyledStack>
+        <StyledStarIcon
+          onClick={() => handleMarkCompleted(cards[currentIndex]?.id)}
+          className={`${
+            completedCards.includes(cards[currentIndex]?.id) ? 'completed' : ''
+          }`}
+        />
       </StyledBox>
       <StyledGrid>
         {cards[currentIndex] && (

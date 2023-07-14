@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
+  StyledBox,
   StyledCard,
   StyledItemTypography,
   StyledCardMedia,
@@ -14,7 +15,7 @@ const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
   const handleCardClick = () => setIsFlipped(!isFlipped);
 
   return (
-    <>
+    <StyledBox className="cardBox">
       <StyledCardButton
         className="customButton"
         disabled={currentIndex === 0}
@@ -43,7 +44,7 @@ const CardItem = ({ card, onPrevCard, onNextCard, currentIndex }) => {
       <StyledCardButton className="customButton" onClick={onNextCard}>
         <ChevronRightIcon />
       </StyledCardButton>
-    </>
+    </StyledBox>
   );
 };
 

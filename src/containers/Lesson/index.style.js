@@ -38,10 +38,9 @@ export const StyledCardActions = styled(CardActions)`
     display: flex;
     flex-direction: row;
     margin: 0px 20px 16px;
-    flex-wrap: nowrap;
   }
   && > *:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 10px;
   }
 `;
 
@@ -85,7 +84,7 @@ export const StyledDialog = styled(Dialog)`
     height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     padding: 32px;
     box-sizing: border-box;
   }
@@ -104,7 +103,7 @@ export const StyledDialogActions = styled(DialogActions)`
   && {
     justify-content: center;
     display: flex;
-    gap: 8px;
+    flex-direction: row;
     margin: 20px;
     margin-bottom: 50px;
   }
@@ -113,21 +112,17 @@ export const StyledDialogActions = styled(DialogActions)`
 export const StyledButton = styled(Button)`
   && {
     border: 1px solid ${(props) => props.theme.palette.primary.main};
-    min-width: 80px;
+    padding: 5px 15px;
+    width: 120px;
   }
   &&.ViewBtn {
-    min-width: 120px;
     border-radius: 20px;
   }
   &&.customButton {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 80px;
+    margin: 80px 40px 30px;
   }
   &&.containedButton {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 80px;
+    margin: 80px 40px 30px;
     color: ${(props) => props.theme.palette.primary.contrastText};
     background-color: ${(props) => props.theme.palette.primary.main};
   }
@@ -156,8 +151,8 @@ export const StyledDeleteDialog = styled(Dialog)`
 
 export const StyledDeleteButton = styled(Button)`
   && {
-    min-width: 120px;
-    margin: 0 30px 30px;
+    width: 120px;
+    margin: 10px 60px 30px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.deleteButton {

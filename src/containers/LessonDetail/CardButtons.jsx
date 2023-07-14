@@ -23,7 +23,7 @@ const CardButtons = ({
         Finish
       </StyledButton>
       <StyledButton className="containedButton" onClick={onReturn}>
-        Back Lesson
+        Lessons
       </StyledButton>
     </ButtonGrid>
   );

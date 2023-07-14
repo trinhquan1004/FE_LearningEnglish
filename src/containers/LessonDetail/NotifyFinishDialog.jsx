@@ -15,7 +15,7 @@ const NotifyFinishDialog = ({ open, onClose, onReturn }) => (
       Congratulations, you have completed this lesson! <CelebrationIcon />
     </StyledFinishTypography>
     <StyledFinishDialogActions>
-      <StyledFinishButton onClick={onClose}>Exit</StyledFinishButton>
+      <StyledFinishButton onClick={onClose}>Learn again</StyledFinishButton>
       <StyledFinishButton onClick={onReturn} className="containedButton">
         Back Lesson
       </StyledFinishButton>

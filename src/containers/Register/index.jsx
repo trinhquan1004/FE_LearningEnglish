@@ -9,7 +9,6 @@ import {
   Link,
   Grid,
   Box,
-  Typography,
 } from '@mui/material';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import Copyright from '../../components/Copyright/index';
@@ -20,6 +19,7 @@ import {
   StyledBox,
   StyledAvatar,
   StyledButton,
+  StyledTypography,
 } from './index.style';
 
 const RegisterContainer = () => {
@@ -50,23 +50,21 @@ const RegisterContainer = () => {
   if (isRegistered) window.location.href = '/login';
 
   return (
-    <StyledContainer component="main" className="customCon">
+    <StyledContainer className="customContainer">
       <CssBaseline />
       <StyledBox>
         <StyledAvatar className="customAva">
           <PersonAddOutlinedIcon />
         </StyledAvatar>
-        <Typography component="h1" variant="h5" sx={{ fontSize: 30 }}>
-          Sign up
-        </Typography>
+        <StyledTypography>Sign up</StyledTypography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 autoComplete="given-name"
+                fullWidth
                 name="name"
                 required
-                fullWidth
                 id="name"
                 label="Your Name"
                 autoFocus

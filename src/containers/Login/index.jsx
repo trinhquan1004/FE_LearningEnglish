@@ -62,13 +62,12 @@ const LoginContainer = () => {
       <CssBaseline />
       <StyledBackgroundGrid item xs={false} sm={4} md={7} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <StyledBox className="customBox">
-          <StyledTypography component="h1" variant="h5">
+        <StyledBox>
+          <StyledTypography>
             Welcome to our
             <br />
             English learning website!
           </StyledTypography>
-          <br />
           <StyledAvatar>
             <LockOutlinedIcon />
           </StyledAvatar>
