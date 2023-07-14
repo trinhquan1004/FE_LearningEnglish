@@ -14,8 +14,8 @@ import {
 import {
   StyledBox,
   StyledTypography,
-  StyledStack,
-  StyledGrid,
+  StyledTypography1,
+  StyledDivider,
 } from './index.style';
 import Copyright from '../Copyright';
 
@@ -24,8 +24,8 @@ const Footer = () => (
     <StyledTypography className="customTypo">
       Website to learn English through flashcards
     </StyledTypography>
-    <StyledStack className="customStack">
-      <List sx={{ pr: 10 }}>
+    <StyledBox className="newBox">
+      <List>
         <StyledTypography className="titleTypo">General</StyledTypography>
         <StyledTypography>Home</StyledTypography>
         <StyledTypography>Service</StyledTypography>
@@ -34,33 +34,47 @@ const Footer = () => (
         <StyledTypography>Developer</StyledTypography>
         <StyledTypography>Document</StyledTypography>
       </List>
-      <List sx={{ pr: 10 }}>
+      <List>
         <StyledTypography className="titleTypo">Contact</StyledTypography>
-        <StyledGrid>
+        <StyledBox>
           <LocationOn />
-          <StyledTypography>Hai Ba Trung, Ha Noi</StyledTypography>
+          <StyledTypography1>Hai Ba Trung, Ha Noi</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <Email />
-          <StyledTypography>contact@tq.vn</StyledTypography>
+          <StyledTypography1>contact@tq.vn</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <Smartphone />
-          <StyledTypography>Support: 0999999999</StyledTypography>
+          <StyledTypography1>Support: 0999999999</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <Phone />
-          <StyledTypography>Hotline: 0123456789</StyledTypography>
-        </StyledGrid>
+          <StyledTypography1>Hotline: 0123456789</StyledTypography1>
+        </StyledBox>
       </List>
       <List>
         <StyledTypography className="titleTypo">Follow us</StyledTypography>
-        <StyledGrid>
+        <StyledBox>
           <Facebook />
-          <StyledTypography>Facebook</StyledTypography>
+          <StyledTypography1>Facebook</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <Instagram />
-          <StyledTypography>Instagram</StyledTypography>
+          <StyledTypography1>Instagram</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <YouTube />
-          <StyledTypography>YouTube</StyledTypography>
+          <StyledTypography1>YouTube</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <Twitter />
-          <StyledTypography>Twitter</StyledTypography>
+          <StyledTypography1> Twitter</StyledTypography1>
+        </StyledBox>
+        <StyledBox>
           <LinkedIn />
-          <StyledTypography>LinkedIn</StyledTypography>
-        </StyledGrid>
+          <StyledTypography1>LinkedIn</StyledTypography1>
+        </StyledBox>
       </List>
       <List>
         <StyledTypography>Terms of use</StyledTypography>
@@ -71,8 +85,8 @@ const Footer = () => (
         <StyledTypography>Sitemap</StyledTypography>
         <StyledTypography>Frequently asked questions</StyledTypography>
       </List>
-    </StyledStack>
-    <hr />
+    </StyledBox>
+    <StyledDivider />
     <Copyright />
   </StyledBox>
 );

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { Box, Container, Avatar, Button } from '@mui/material';
+import { Box, Container, Avatar, Button, Typography } from '@mui/material';
 
 export const StyledContainer = styled(Container)`
-  &&.customCon {
+  &&.customContainer {
     padding: 35px;
-    width: 450px;
+    width: 30%;
     background-color: white;
     border-radius: 10px;
     margin: 20px;
@@ -17,10 +17,12 @@ export const StyledContainer = styled(Container)`
 `;
 
 export const StyledBox = styled(Box)`
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  && {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const StyledAvatar = styled(Avatar)`
@@ -37,5 +39,11 @@ export const StyledButton = styled(Button)`
     width: 100%;
     background-color: ${(props) => props.theme.palette.primary.main};
     color: ${(props) => props.theme.palette.primary.contrastText};
+  }
+`;
+
+export const StyledTypography = styled(Typography)`
+  && {
+    font-size: 30px;
   }
 `;

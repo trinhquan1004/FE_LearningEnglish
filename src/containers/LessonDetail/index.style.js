@@ -12,6 +12,7 @@ import {
   DialogActions,
   TextField,
 } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 export const StyledGrid = styled(Grid)`
   && {
@@ -22,24 +23,29 @@ export const StyledGrid = styled(Grid)`
 `;
 
 export const StyledBox = styled(Box)`
-  && {
+  &&.customBox {
     padding-top: 64px;
-    padding-bottom: 48px;
+    padding-bottom: 20px;
     background-color: ${(props) => props.theme.palette.background.paper};
+  }
+  &&.cardBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
   }
 `;
 
 export const StyledTypography = styled(Typography)`
   &&.titleTypo {
-    font-size: 3.5rem;
+    font-size: 48px;
     text-align: center;
     color: ${(props) => props.theme.palette.text.primary};
-    padding-top: 120px;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
+    padding-top: 100px;
   }
   &&.paraTypo {
-    width: 150px;
+    width: 20%;
     height: 40px;
     font-size: 1.5rem;
     font-weight: bold;
@@ -52,7 +58,8 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledStack = styled(Stack)`
   &&.customStack {
-    padding-top: 2rem;
+    padding-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -62,6 +69,7 @@ export const StyledStack = styled(Stack)`
 
 export const StyledButton = styled(Button)`
   && {
+    font-size: 13px;
     margin: 8px;
     color: ${(props) => props.theme.palette.primary.main};
     border: 1px solid ${(props) => props.theme.palette.primary.main};
@@ -81,10 +89,10 @@ export const ButtonGrid = styled(Grid)`
   && {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 6%;
     justify-content: center;
     align-items: center;
-    width: 350px;
+    width: 24%;
     padding-top: 30px;
     margin: 0 auto;
     place-content: center;
@@ -93,22 +101,23 @@ export const ButtonGrid = styled(Grid)`
 
 export const StyledCard = styled(Card)`
   &&.customCard {
-    margin-top: 20px;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 450px;
-    width: 350px;
+    width: 45%;
+    height: 420px;
     border-radius: 10px;
     background-color: #98f5ff;
     box-shadow: 0px 0px 5px ${(props) => props.theme.palette.primary.main};
-    transition: transform 0.2s;
+    transition: transform 0.3s;
     transform-style: preserve-3d;
     cursor: pointer;
     &.flipped {
       transform: rotateY(180deg);
+    }
+    @media only screen and (max-width: 800px) {
+      height: 250px;
     }
   }
 `;
@@ -117,21 +126,24 @@ export const StyledItemTypography = styled(Typography)`
   &&.titleTypo {
     display: flex;
     font-weight: bold;
-    margin: 20px 10px;
-    margin-top: 40px;
-    padding: 10px 10px;
-    font-size: 2.5rem;
+    margin: 40px 10px 20px;
+    padding: 10px;
+    font-size: 40px;
     color: ${(props) => props.theme.palette.secondary.main};
+    @media only screen and (max-width: 800px) {
+      font-size: 24px;
+    }
   }
   &&.descTypo {
-    padding: 10px;
-    font-size: 26px;
+    padding: 10px 25px;
+    font-size: 23px;
     color: black;
     transform: rotateY(180deg);
-    white-space: pre-wrap;
     word-break: break-word;
-    width: 320px;
     text-align: left;
+    @media only screen and (max-width: 800px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -139,22 +151,37 @@ export const StyledCardMedia = styled(CardMedia)`
   && {
     display: flex;
     justify-content: center;
-    width: 65%;
-    padding-top: 65%;
-    margin-bottom: 60px;
+    width: 60%;
+    height: 60%;
+    margin-bottom: 18%;
   }
 `;
 
 export const StyledCardButton = styled(Button)`
   &&.customButton {
-    width: 80px;
-    margin: 10px;
+    height: 30%;
+    width: auto;
+    margin: auto 5px;
     color: ${(props) => props.theme.palette.primary.main};
     background-color: #ffff;
     font-size: 100px;
   }
   .MuiSvgIcon-root {
-    font-size: 64px;
+    font-size: 60%;
+  }
+`;
+
+export const StyledStarIcon = styled(StarIcon)`
+  && {
+    font-size: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    color: silver;
+  }
+  &&.completed {
+    color: yellow;
   }
 `;
 
@@ -207,9 +234,8 @@ export const StyledDialogActions = styled(DialogActions)`
 
 export const StyledDeleteButton = styled(Button)`
   && {
-    min-width: 120px;
-    margin: 20px;
-    margin-top: 0px;
+    margin: 0px 50px 20px;
+    width: 120px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.deleteButton {
@@ -259,10 +285,8 @@ export const StyledEditDialog = styled(Dialog)`
 
 export const StyledButton1 = styled(Button)`
   && {
-    min-width: 120px;
-    margin: 20px;
-    margin-bottom: 0px;
-    margin-top: 40px;
+    width: 120px;
+    margin: 30px 30px 0px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }
   &&.containedButton {
@@ -306,7 +330,6 @@ export const StyledFinishDialogActions = styled(DialogActions)`
 
 export const StyledFinishButton = styled(Button)`
   && {
-    min-width: 120px;
     margin: 20px;
     border: 1px solid ${(props) => props.theme.palette.primary.main};
   }

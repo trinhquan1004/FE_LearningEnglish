@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 
 export const StyledTypography = styled(Typography)`
   && {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     color: ${(props) => props.theme.palette.primary.contrastText};
     margin-top: 20px;
